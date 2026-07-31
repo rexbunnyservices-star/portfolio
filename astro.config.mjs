@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://rexbunnyservices-star.pages.dev',
+  site: 'https://portfolio.rexbunnyservices.online',
   output: 'static',
 });
