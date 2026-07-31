@@ -26,4 +26,8 @@ Built with [Astro](https://astro.build) and deployed on Cloudflare Pages.
 
 Pushed to GitHub → auto-deploys to Cloudflare Pages (build: `npm run build`, output: `dist`).
 
-Live at <https://rexbunnyservices-star.pages.dev>
+## Live
+
+- **Production:** <https://portfolio.rexbunnyservices.online>
+- **Backup (pages.dev):** <https://portfolio-cqn.pages.dev>
+- **Repo:** <https://github.com/rexbunnyservices-star/portfolio>
