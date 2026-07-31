@@ -1,0 +1,75 @@
+---
+import Reveal from './Reveal.astro';
+
+const projects = [
+  {
+    num: '01',
+    title: 'Rex Bunny Services — Platform, Website & Backend',
+    tagline: 'FULL-STACK · ASTRO · POCKETBASE',
+    desc: 'An end-to-end web platform for a full-service agency — a fast marketing site, a scalable backend, and the automation layer that powers the whole product.',
+    facts: [
+      'SEO-optimized marketing site built with Astro',
+      'PocketBase backend exposed publicly via API',
+      'n8n workflow automation integrated into the core product',
+      'Hardened production setup — Cloudflare security headers, CSP, secure cookies',
+    ],
+    tags: ['Astro', 'PocketBase', 'n8n', 'Cloudflared', 'Docker'],
+  },
+  {
+    num: '02',
+    title: 'MY Company — AI-Powered Business Operations',
+    tagline: 'AI AGENTS · AUTOMATION · STRATEGY',
+    desc: 'A complete AI-agent operating system where AI agents take on real company roles — planning strategy, running sales, and driving SEO — 24/7.',
+    facts: [
+      'CEO agent for strategic planning & creative direction',
+      'Sales agent managing outreach, pipeline & client communication',
+      'SEO / GEO / AEO agent for technical audits & AI-search visibility',
+      'Supporting agents for content, support & web development',
+    ],
+    tags: ['Gemini', 'OpenCode', 'MCP', 'Agent Framework'],
+  },
+  {
+    num: '03',
+    title: 'MY Company ComfyUI — Creative AI Pipelines',
+    tagline: 'GENERATIVE AI · COMFYUI · ASSETS',
+    desc: 'A generative AI studio for producing visual content at scale — programmatic asset generation wired into the wider business ecosystem.',
+    facts: [
+      'ComfyUI workflows for creative asset generation',
+      'Managed asset pipeline integrated with MY Company',
+      'Bridges logic and creativity — AI for both reasoning and visuals',
+    ],
+    tags: ['ComfyUI', 'Generative AI', 'Automation'],
+  },
+];
+---
+
+<section id="work">
+  <div class="container">
+    <Reveal>
+      <span class="section-label">Featured work</span>
+      <h2 class="section-title">Showcase Projects</h2>
+      <p class="section-sub">
+        Three systems across the full spectrum — web, AI operations, and generative pipelines.
+      </p>
+    </Reveal>
+
+    <div class="projects-grid">
+      {projects.map((p, i) => (
+        <Reveal className="project-card" delay={i * 90}>
+          <span class="project-num">{p.num}</span>
+          <h3 class="project-title">{p.title}</h3>
+          <div class="project-tagline">{p.tagline}</div>
+          <p class="project-desc">{p.desc}</p>
+          <ul class="project-facts">
+            {p.facts.map((f) => <li>{f}</li>)}
+          </ul>
+          <div class="tags">
+            {p.tags.map((t, j) => (
+              <span class:list={['tag', j % 2 === 0 ? 'tag-alt' : '']}>{t}</span>
+            ))}
+          </div>
+        </Reveal>
+      ))}
+    </div>
+  </div>
+</section>

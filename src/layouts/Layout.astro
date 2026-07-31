@@ -1,0 +1,72 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = 'Anass — Web Development, AI & Automation', description = 'Portfolio of Anass — building intelligent web platforms, AI agents and automation systems.' } = Astro.props;
+
+const navLinks = [
+  { href: '#services', label: 'Services' },
+  { href: '#work', label: 'Work' },
+  { href: '#case-study', label: 'Case Study' },
+  { href: '#stack', label: 'Stack' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Anass" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#0a0a12" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <title>{title}</title>
+    <ViewTransitions />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Home">
+        <span class="brand-mark">A</span>
+        <span class="brand-text">anass<span class="accent">.</span>dev</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        {
+          navLinks.map((link) => (
+            <a href={link.href}>{link.label}</a>
+          ))
+        }
+      </nav>
+      <a class="btn btn-ghost btn-sm nav-cta" href="#contact">Let's talk</a>
+    </header>
+
+    <main id="top">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p class="footer-brand">© {new Date().getFullYear()} Anass — built with Astro, deployed on Cloudflare Pages.</p>
+        <div class="footer-links">
+          <a href="https://github.com/rexbunnyservices-star" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://rexbunnyservices.online" target="_blank" rel="noopener">rexbunnyservices.online</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

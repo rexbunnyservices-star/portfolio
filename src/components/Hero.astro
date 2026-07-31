@@ -1,0 +1,53 @@
+---
+import Reveal from './Reveal.astro';
+
+const stats = [
+  { value: '4+', label: 'Production systems shipped' },
+  { value: '3,500+', label: 'Leads automated & enriched' },
+  { value: '455+', label: 'Outreach emails delivered' },
+  { value: '3', label: 'Live services, one ecosystem' },
+];
+---
+
+<section class="hero" id="top">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-orb orb-1" aria-hidden="true"></div>
+  <div class="hero-orb orb-2" aria-hidden="true"></div>
+
+  <div class="container hero-content">
+    <Reveal>
+      <span class="hero-kicker">// web · ai · automation</span>
+    </Reveal>
+
+    <Reveal delay={100}>
+      <h1 class="hero-title">
+        I build <span class="grad">intelligent systems</span> that grow businesses.
+      </h1>
+    </Reveal>
+
+    <Reveal delay={200}>
+      <p class="hero-desc">
+        I'm Anass — a developer crafting modern websites, AI agents, and automated pipelines
+        that turn complex operations into measurable results.
+      </p>
+    </Reveal>
+
+    <Reveal delay={300}>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#work">See my work</a>
+        <a class="btn btn-ghost" href="#contact">Get in touch</a>
+      </div>
+    </Reveal>
+
+    <Reveal delay={400}>
+      <div class="hero-stats">
+        {stats.map((s) => (
+          <div class="stat">
+            <b>{s.value}</b>
+            <span>{s.label}</span>
+          </div>
+        ))}
+      </div>
+    </Reveal>
+  </div>
+</section>

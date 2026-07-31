@@ -1,0 +1,62 @@
+---
+import Reveal from './Reveal.astro';
+
+const caseStats = [
+  { value: '3,500+', label: 'Leads found & enriched' },
+  { value: '455+', label: 'Emails delivered' },
+  { value: '77', label: 'Bounces auto-detected' },
+  { value: '100%', label: 'Pipeline automated' },
+];
+
+const pipelineStages = [
+  'Find — scraped 10 categories × 10 cities for high-intent prospects',
+  'Enrich — AI scored every lead, split into SEO vs web-dev tracks',
+  'Reach — validated emails, multi-channel delivery with fallback',
+  'Nurture — weekly campaign engine keeps leads warm',
+];
+---
+
+<section id="case-study">
+  <div class="container">
+    <Reveal>
+      <span class="section-label">Case study</span>
+      <h2 class="section-title">Automated Lead Generation & Outreach Pipeline</h2>
+      <p class="section-sub">
+        An end-to-end system that finds, scores, and reaches out to prospects — entirely hands-off.
+      </p>
+    </Reveal>
+
+    <div class="case-grid">
+      <div class="case-body">
+        <Reveal>
+          <h3>From raw searches to paying conversations</h3>
+          <p>
+            I designed a <span class="case-accent">4-stage pipeline</span> that connects discovery,
+            AI enrichment, email outreach, and nurture into one continuous flow — then fixed the
+            underlying infrastructure issues that were silently breaking it.
+          </p>
+          <ul class="project-facts">
+            {pipelineStages.map((s) => <li>{s}</li>)}
+          </ul>
+          <div class="tags" style="margin-top: 22px;">
+            <span class="tag">n8n</span>
+            <span class="tag tag-alt">PocketBase</span>
+            <span class="tag">Ollama</span>
+            <span class="tag tag-alt">Maileroo</span>
+            <span class="tag">Titan SMTP</span>
+            <span class="tag tag-alt">Listmonk</span>
+          </div>
+        </Reveal>
+      </div>
+
+      <div class="case-stats">
+        {caseStats.map((s, i) => (
+          <Reveal className="case-stat" delay={i * 80}>
+            <b>{s.value}</b>
+            <span>{s.label}</span>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

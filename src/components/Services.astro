@@ -1,0 +1,54 @@
+---
+import Reveal from './Reveal.astro';
+
+const services = [
+  {
+    icon: '🌐',
+    title: 'Modern Web Development',
+    desc: 'Fast, SEO-ready marketing sites and web apps with Astro, PocketBase and a hardened production setup.',
+  },
+  {
+    icon: '🤖',
+    title: 'AI Agents & Business Automation',
+    desc: 'Strategic, sales, SEO and support agents that operate entire business functions on autopilot.',
+  },
+  {
+    icon: '⚙️',
+    title: 'Workflow Automation',
+    desc: 'n8n pipelines that connect your data, email, CRM and AI into one reliable, self-healing system.',
+  },
+  {
+    icon: '🎨',
+    title: 'Generative AI & Creative Pipelines',
+    desc: 'ComfyUI workflows that produce high-quality visual assets at scale for marketing and product.',
+  },
+  {
+    icon: '📧',
+    title: 'Email Marketing & Nurture',
+    desc: 'Listmonk and SMTP campaigns with validation, bounce handling, and automated nurture sequences.',
+  },
+];
+---
+
+<section id="services">
+  <div class="container">
+    <Reveal>
+      <span class="section-label">What I do</span>
+      <h2 class="section-title">Services</h2>
+      <p class="section-sub">
+        From a single landing page to a full AI-operated business — I build the systems that
+        keep working while you sleep.
+      </p>
+    </Reveal>
+
+    <div class="services-grid">
+      {services.map((s, i) => (
+        <Reveal className="service-card" delay={i * 80}>
+          <div class="service-icon" aria-hidden="true">{s.icon}</div>
+          <h3>{s.title}</h3>
+          <p>{s.desc}</p>
+        </Reveal>
+      ))}
+    </div>
+  </div>
+</section>
