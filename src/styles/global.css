@@ -1,30 +1,31 @@
-/* =============== DESIGN SYSTEM — Cold Cinematic Teal =============== */
+/* =============== DESIGN SYSTEM — Warm Espresso & Champagne Luxury =============== */
 
 /* =============== VARIABLES =============== */
 :root {
   --header-height: 4.5rem;
 
   /* palette */
-  --bg-950: #070b0e;
-  --bg-900: hsl(200 30% 6%);
-  --bg-800: hsl(200 28% 10%);
-  --bg-700: hsl(198 26% 14%);
-  --glass: rgba(226, 240, 244, 0.04);
-  --glass-strong: rgba(226, 240, 244, 0.07);
-  --border: rgba(226, 240, 244, 0.1);
-  --border-strong: rgba(226, 240, 244, 0.17);
+  --bg-950: #140b0c;
+  --bg-900: hsl(353 29% 5%);
+  --bg-800: hsl(354 19% 9%);
+  --bg-700: hsl(356 18% 13%);
+  --glass: rgba(228, 205, 176, 0.04);
+  --glass-strong: rgba(228, 205, 176, 0.07);
+  --border: rgba(228, 205, 176, 0.1);
+  --border-strong: rgba(228, 205, 176, 0.17);
 
-  --ink: hsl(200 15% 94%);
-  --muted: hsl(195 10% 60%);
-  --faint: hsl(195 8% 45%);
+  --ink: hsl(37 50% 79%);
+  --muted: hsl(28 19% 55%);
+  --faint: hsl(23 10% 35%);
 
-  --accent: hsl(188 92% 48%);
-  --accent-2: hsl(166 80% 42%);
-  --accent-soft: hsl(188 92% 48% / 0.14);
-  --accent-glow: 0 0 24px hsl(188 92% 48% / 0.45);
-  --emerald: hsl(195 14% 78%);
-  --emerald-soft: hsl(195 14% 78% / 0.14);
-  --amber: hsl(198 10% 55%);
+  --accent: hsl(24 40% 61%);
+  --accent-2: hsl(21 46% 54%);
+  --accent-soft: hsl(24 40% 61% / 0.14);
+  --accent-glow: 0 0 24px hsl(24 40% 61% / 0.45);
+  --champagne: hsl(37 30% 78%);
+  --champagne-soft: hsl(37 30% 78% / 0.14);
+  --bronze: hsl(24 20% 50%);
+  --grad: linear-gradient(120deg, #c49474 0%, #bf7a54 45%, #907360 100%);
   --danger: hsl(0 84% 60%);
 
   /* typography */
@@ -70,7 +71,7 @@
 
 html {
   scroll-behavior: smooth;
-  scrollbar-color: hsl(195 10% 20%) var(--bg-900);
+  scrollbar-color: hsl(24 10% 18%) var(--bg-900);
   overflow-x: clip;
 }
 
@@ -88,8 +89,8 @@ body {
   color: var(--ink);
   background-color: var(--bg-900);
   background-image:
-    radial-gradient(1200px 700px at 15% -5%, hsl(188 92% 48% / 0.07), transparent 55%),
-    radial-gradient(1000px 600px at 85% 0%, hsl(166 80% 42% / 0.05), transparent 50%),
+    radial-gradient(1200px 700px at 15% -5%, hsl(24 40% 61% / 0.07), transparent 55%),
+    radial-gradient(1000px 600px at 85% 0%, hsl(21 46% 54% / 0.05), transparent 50%),
     linear-gradient(180deg, var(--bg-950), var(--bg-900) 40%);
   background-attachment: fixed;
   line-height: 1.6;
@@ -305,8 +306,8 @@ html.no-js .reveal {
 
 .btn--primary {
   color: var(--bg-950);
-  background: linear-gradient(120deg, var(--accent), hsl(166 80% 46%));
-  box-shadow: 0 4px 24px hsl(188 92% 48% / 0.35);
+  background: var(--grad);
+  box-shadow: 0 4px 24px hsl(24 40% 61% / 0.35);
 }
 .btn--primary:hover {
   box-shadow: var(--accent-glow);
@@ -437,7 +438,7 @@ html.no-js .reveal {
   padding: 0.6rem 1.2rem;
   border-radius: var(--radius-pill);
   background: var(--accent-soft);
-  border: 1px solid hsl(188 92% 48% / 0.35);
+  border: 1px solid hsl(24 40% 61% / 0.35);
   color: var(--accent);
   font-family: var(--display);
   font-weight: var(--fw-semi);
@@ -480,7 +481,7 @@ html.no-js .reveal {
   inset: 0;
   pointer-events: none;
   background:
-    conic-gradient(from 210deg at 50% 60%, transparent 0deg, hsl(188 92% 48% / 0.16) 90deg, transparent 180deg, hsl(166 80% 42% / 0.12) 270deg, transparent 360deg);
+    conic-gradient(from 210deg at 50% 60%, transparent 0deg, hsl(24 40% 61% / 0.16) 90deg, transparent 180deg, hsl(21 46% 54% / 0.12) 270deg, transparent 360deg);
   filter: blur(60px);
   animation: beam-drift 14s ease-in-out infinite alternate;
 }
@@ -595,7 +596,7 @@ html.no-js .reveal {
 /* =============== TERMINAL =============== */
 .terminal {
   background: linear-gradient(180deg, rgba(10, 10, 10, 0.85), rgba(6, 6, 6, 0.9));
-  border: 1px solid hsl(188 92% 48% / 0.25);
+  border: 1px solid hsl(24 40% 61% / 0.25);
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.05);
@@ -654,8 +655,8 @@ html.no-js .reveal {
   color: var(--ink);
 }
 .terminal__line .out { color: var(--muted); }
-.terminal__line .ok { color: var(--emerald); }
-.terminal__line .warn { color: var(--amber); }
+.terminal__line .ok { color: var(--champagne); }
+.terminal__line .warn { color: var(--bronze); }
 .terminal__line .err { color: var(--danger); }
 .terminal__line .hl { color: var(--accent); }
 
@@ -710,8 +711,8 @@ html.no-js .reveal {
   position: relative;
   overflow: hidden;
   border-radius: var(--radius);
-  aspect-ratio: 4 / 5;
-  background: radial-gradient(120% 120% at 50% 0%, hsl(188 92% 48% / 0.12), transparent 60%);
+  aspect-ratio: 725 / 1280;
+  background: radial-gradient(120% 120% at 50% 0%, hsl(24 40% 61% / 0.12), transparent 60%);
 }
 .hero__photo-frame::after {
   content: "";
@@ -719,7 +720,7 @@ html.no-js .reveal {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(160deg, hsl(188 92% 48% / 0.55), transparent 40%, transparent 62%, hsl(200 15% 94% / 0.14));
+  background: linear-gradient(160deg, hsl(24 40% 61% / 0.55), transparent 40%, transparent 62%, hsl(37 50% 79% / 0.14));
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
@@ -828,14 +829,14 @@ html.no-js .reveal {
 }
 .about__stat:hover {
   transform: translateY(-4px);
-  border-color: hsl(188 92% 48% / 0.4);
+  border-color: hsl(24 40% 61% / 0.4);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
 }
 .about__stat .num {
   font-family: var(--display);
   font-size: clamp(1.8rem, 3vw, 2.4rem);
   font-weight: var(--fw-black);
-  color: var(--emerald);
+  color: var(--champagne);
   line-height: 1;
 }
 .about__stat:nth-child(even) .num { color: var(--accent); }
@@ -899,7 +900,7 @@ html.no-js .reveal {
 }
 .bento__card:hover {
   transform: translateY(-5px);
-  border-color: hsl(188 92% 48% / 0.35);
+  border-color: hsl(24 40% 61% / 0.35);
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35), 0 0 40px var(--accent-soft);
 }
 .bento__card--wide { grid-column: span 8; }
@@ -909,7 +910,7 @@ html.no-js .reveal {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(500px 300px at var(--mx, 50%) var(--my, 0%), hsl(188 92% 48% / 0.08), transparent 60%);
+  background: radial-gradient(500px 300px at var(--mx, 50%) var(--my, 0%), hsl(24 40% 61% / 0.08), transparent 60%);
   opacity: 0;
   transition: opacity 0.4s ease;
   pointer-events: none;
@@ -932,23 +933,23 @@ html.no-js .reveal {
 }
 .bento__card:hover .bento__icon {
   color: var(--accent);
-  border-color: hsl(188 92% 48% / 0.4);
+  border-color: hsl(24 40% 61% / 0.4);
   box-shadow: 0 0 20px var(--accent-soft);
 }
 .bento__card[data-tint="emerald"] .bento__icon {
-  color: var(--emerald);
-  background: var(--emerald-soft);
+  color: var(--champagne);
+  background: var(--champagne-soft);
   border-color: var(--border);
 }
 .bento__card[data-tint="amber"] .bento__icon {
-  color: var(--amber);
+  color: var(--bronze);
   background: hsl(0 0% 55% / 0.12);
   border-color: var(--border);
 }
 .bento__card[data-tint="cyan"] .bento__icon {
   color: var(--accent);
   background: var(--accent-soft);
-  border-color: hsl(188 92% 48% / 0.25);
+  border-color: hsl(24 40% 61% / 0.25);
 }
 
 .bento__card h3 {
@@ -991,7 +992,7 @@ html.no-js .reveal {
   color: var(--accent);
   line-height: 1.1;
 }
-.bento__card[data-tint="emerald"] .bento__feature .metric { color: var(--emerald); }
+.bento__card[data-tint="emerald"] .bento__feature .metric { color: var(--champagne); }
 .bento__feature .metric-label {
   font-size: var(--fs-xs);
   color: var(--faint);
@@ -1019,7 +1020,7 @@ html.no-js .reveal {
 }
 .case-card:hover {
   transform: translateY(-5px);
-  border-color: hsl(166 80% 42% / 0.35);
+  border-color: hsl(21 46% 54% / 0.35);
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35);
 }
 .case-card__preview {
@@ -1085,7 +1086,7 @@ html.no-js .reveal {
   font-size: var(--fs-xs);
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: var(--emerald);
+  color: var(--champagne);
 }
 .case-card__tag--cyan { color: var(--accent); }
 .case-card__arrow {
@@ -1156,7 +1157,7 @@ html.no-js .reveal {
 }
 .work__row:hover {
   transform: translateX(6px);
-  border-color: hsl(188 92% 48% / 0.35);
+  border-color: hsl(24 40% 61% / 0.35);
   background: var(--glass-strong);
 }
 .work__period {
@@ -1204,7 +1205,7 @@ html.no-js .reveal {
 }
 .result-card:hover {
   transform: translateY(-5px);
-  border-color: hsl(166 80% 42% / 0.35);
+  border-color: hsl(21 46% 54% / 0.35);
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.3);
 }
 .result-card i {
@@ -1222,7 +1223,7 @@ html.no-js .reveal {
 }
 .result-card:hover i {
   color: var(--accent);
-  border-color: hsl(188 92% 48% / 0.4);
+  border-color: hsl(24 40% 61% / 0.4);
 }
 .result-card .num {
   font-family: var(--display);
@@ -1247,7 +1248,7 @@ html.no-js .reveal {
   align-items: start;
 }
 .ai-demo .terminal {
-  border-color: hsl(166 80% 42% / 0.25);
+  border-color: hsl(21 46% 54% / 0.25);
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 .ai-demo__list {
@@ -1265,7 +1266,7 @@ html.no-js .reveal {
   transition: border-color 0.25s ease, transform 0.25s ease;
 }
 .ai-demo__item:hover {
-  border-color: hsl(188 92% 48% / 0.35);
+  border-color: hsl(24 40% 61% / 0.35);
   transform: translateX(4px);
 }
 .ai-demo__item i {
@@ -1306,7 +1307,7 @@ html.no-js .reveal {
 }
 .contact__channel:hover {
   transform: translateY(-3px);
-  border-color: hsl(188 92% 48% / 0.4);
+  border-color: hsl(24 40% 61% / 0.4);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
 }
 .contact__channel .ic {
@@ -1319,10 +1320,10 @@ html.no-js .reveal {
   font-size: 1.4rem;
   color: var(--accent);
   background: var(--accent-soft);
-  border: 1px solid hsl(188 92% 48% / 0.25);
+  border: 1px solid hsl(24 40% 61% / 0.25);
   flex-shrink: 0;
 }
-.contact__channel:nth-child(2) .ic { color: var(--emerald); background: var(--emerald-soft); border-color: var(--border); }
+.contact__channel:nth-child(2) .ic { color: var(--champagne); background: var(--champagne-soft); border-color: var(--border); }
 .contact__channel h4 { font-size: var(--fs-body); }
 .contact__channel p {
   font-family: var(--mono);
@@ -1379,7 +1380,7 @@ html.no-js .reveal {
   font-family: var(--mono);
   font-size: var(--fs-xs);
   min-height: 1.2em;
-  color: var(--emerald);
+  color: var(--champagne);
 }
 .form-status.is-error { color: var(--danger); }
 
