@@ -66,9 +66,9 @@ const cards = [
 
 <section class="section" id="capabilities">
   <div class="container">
-    <div class="section__head" data-reveal>
-      <span class="section__kicker">Capabilities</span>
-      <h2 class="section__title">One ecosystem. Every engine running.</h2>
+    <div class="section__head" data-num="01" data-reveal>
+      <span class="section__kicker" data-kicker-num="/ 01">Capabilities</span>
+      <h2 class="section__title">One ecosystem. <em>Every</em> engine running.</h2>
       <p class="section__lead">
         Services, tech and goals merged into one integrated stack — each piece
         feeding the next so your business runs itself.
@@ -77,12 +77,12 @@ const cards = [
 
     <div class="bento">
       {
-        cards.map((card) => (
+        cards.map((card, i) => (
           <article
             class:list={['glass', 'bento__card', card.wide ? 'bento__card--wide' : '']}
             data-tint={card.tint}
             data-reveal
-            data-delay={(card.id % 3) * 100}
+            data-delay={(i % 3) * 100}
           >
             <span class="bento__icon"><i class={card.icon}></i></span>
             <h3>{card.title}</h3>

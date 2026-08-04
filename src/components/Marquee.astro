@@ -1,27 +1,40 @@
 ---
-const items = [
-  'AI Agents',
-  'Web Architecture',
-  'Lead Generation',
-  'n8n Automation',
-  'SEO / AEO / GEO',
-  'Email Outreach',
-  'PocketBase',
-  'Ollama',
-  'Astro',
-  'Generative AI',
-  'Listmonk',
-  'Cloudflare',
+const rowA = [
+  { label: 'AI Agents', icon: 'ri-robot-2-line' },
+  { label: 'Web Architecture', icon: 'ri-global-line' },
+  { label: 'Lead Generation', icon: 'ri-focus-3-line' },
+  { label: 'n8n Automation', icon: 'ri-flow-chart' },
+  { label: 'SEO / AEO / GEO', icon: 'ri-search-eye-line' },
+  { label: 'Email Outreach', icon: 'ri-mail-send-line' },
+  { label: 'PocketBase', icon: 'ri-database-2-line' },
+  { label: 'Ollama', icon: 'ri-robot-2-line' },
+  { label: 'Astro', icon: 'ri-rocket-2-line' },
+  { label: 'Generative AI', icon: 'ri-sparkling-2-line' },
+  { label: 'Listmonk', icon: 'ri-mail-open-line' },
+  { label: 'Cloudflare', icon: 'ri-cloud-line' },
 ];
+const rowB = [...rowA].reverse();
 ---
 
 <div class="marquee" aria-hidden="true">
-  <div class="marquee__track">
-    {[...items, ...items].map((item) => (
-      <span class="marquee__item">
-        <i class="ri-flashlight-fill"></i>
-        {item}
-      </span>
-    ))}
+  <div class="marquee__row">
+    <div class="marquee__track">
+      {[...rowA, ...rowA].map((item) => (
+        <span class="marquee__item">
+          <i class={item.icon}></i>
+          {item.label}
+        </span>
+      ))}
+    </div>
+  </div>
+  <div class="marquee__row">
+    <div class="marquee__track marquee__track--reverse">
+      {[...rowB, ...rowB].map((item) => (
+        <span class="marquee__item">
+          <i class={item.icon}></i>
+          {item.label}
+        </span>
+      ))}
+    </div>
   </div>
 </div>

@@ -11,9 +11,9 @@ const results = [
 
 <section class="section" id="results">
   <div class="container">
-    <div class="section__head" data-reveal>
-      <span class="section__kicker">Results</span>
-      <h2 class="section__title">Real numbers from the pipeline.</h2>
+    <div class="section__head" data-num="05" data-reveal>
+      <span class="section__kicker" data-kicker-num="/ 05">Results</span>
+      <h2 class="section__title">Real numbers from the <em>pipeline</em>.</h2>
       <p class="section__lead">
         Not projected figures — live metrics measured while the systems run on
         their own.
@@ -29,7 +29,7 @@ const results = [
             data-delay={(i % 3) * 90}
           >
             <i class={r.icon}></i>
-            <div class="num">{r.value}</div>
+            <div class="num" data-count={r.value}>{r.value}</div>
             <div class="label">{r.label}</div>
           </div>
         ))

@@ -7,6 +7,13 @@ const cases = [
     desc: 'Scrapes 10 categories × 10 cities for high-intent prospects, AI-enriches every lead, then scores them into SEO vs web-dev tracks.',
     metrics: ['3,500+ leads', '455+ emails', '77 bounces cleaned'],
     tags: ['n8n', 'PocketBase', 'Ollama', 'Maileroo'],
+    preview: {
+      icon: 'ri-focus-3-line',
+      ghost: 'LF·GEN',
+      from: 'hsl(38 60% 55% / 0.32)',
+      to: 'hsl(24 8% 12%)',
+      accent: 'hsl(38 60% 55%)',
+    },
   },
   {
     tag: 'Full-Stack Platform',
@@ -15,6 +22,13 @@ const cases = [
     desc: 'A fast Astro marketing site, a PocketBase backend exposed publicly via API, and the n8n automation layer powering the whole product.',
     metrics: ['Astro', 'PocketBase', 'CSP', 'Secure'],
     tags: ['Astro', 'PocketBase', 'n8n', 'Cloudflared', 'Docker'],
+    preview: {
+      icon: 'ri-rocket-2-line',
+      ghost: 'REX·HQ',
+      from: 'hsl(30 6% 24%)',
+      to: 'hsl(24 7% 8%)',
+      accent: 'hsl(30 6% 78%)',
+    },
   },
   {
     tag: 'AI Agents',
@@ -23,6 +37,13 @@ const cases = [
     desc: 'An AI-agent operating system where agents take on real company roles — CEO strategy, sales outreach, SEO audits — running 24/7.',
     metrics: ['CEO agent', 'Sales agent', 'SEO agent'],
     tags: ['Gemini', 'OpenCode', 'MCP'],
+    preview: {
+      icon: 'ri-robot-2-line',
+      ghost: 'AI·OPS',
+      from: 'hsl(42 70% 70% / 0.34)',
+      to: 'hsl(24 7% 10%)',
+      accent: 'hsl(42 70% 70%)',
+    },
   },
   {
     tag: 'Email Nurture',
@@ -31,6 +52,13 @@ const cases = [
     desc: 'A campaign engine that keeps leads warm automatically — fetch subscribers, analyze, create, send — with bounce-aware lists.',
     metrics: ['Weekly', 'Auto', 'Healthy lists'],
     tags: ['Listmonk', 'n8n', 'Automation'],
+    preview: {
+      icon: 'ri-mail-open-line',
+      ghost: 'NURTURE',
+      from: 'hsl(30 5% 32%)',
+      to: 'hsl(24 7% 9%)',
+      accent: 'hsl(30 5% 78%)',
+    },
   },
   {
     tag: 'Generative AI',
@@ -39,15 +67,22 @@ const cases = [
     desc: 'A generative AI studio producing visual content at scale — ComfyUI workflows plus an LTX-2 video generation API with full launcher infrastructure.',
     metrics: ['ComfyUI', 'LTX-2', 'API'],
     tags: ['ComfyUI', 'Generative AI', 'LTX-2'],
+    preview: {
+      icon: 'ri-sparkling-2-line',
+      ghost: 'GEN·AI',
+      from: 'hsl(38 58% 48% / 0.32)',
+      to: 'hsl(24 7% 8%)',
+      accent: 'hsl(40 60% 60%)',
+    },
   },
 ];
 ---
 
 <section class="section" id="work">
   <div class="container">
-    <div class="section__head" data-reveal>
-      <span class="section__kicker">Case Studies</span>
-      <h2 class="section__title">Systems I've shipped end-to-end.</h2>
+    <div class="section__head" data-num="02" data-reveal>
+      <span class="section__kicker" data-kicker-num="/ 02">Case Studies</span>
+      <h2 class="section__title">Systems I've shipped <em>end-to-end</em>.</h2>
       <p class="section__lead">
         Real projects, real infrastructure — from lead pipelines to full-stack
         platforms, all designed to run themselves.
@@ -62,6 +97,11 @@ const cases = [
             data-reveal
             data-delay={(i % 2) * 100}
           >
+            <div class="case-card__preview" style={`--cv-from: ${c.preview.from}; --cv-to: ${c.preview.to}; --cv-accent: ${c.preview.accent};`}>
+              <span class="case-card__preview-icon"><i class={c.preview.icon}></i></span>
+              <span class="case-card__preview-ghost">{c.preview.ghost}</span>
+              <span class="case-card__preview-grid" aria-hidden="true"></span>
+            </div>
             <div class="case-card__top">
               <span class:list={['case-card__tag', c.cyan ? 'case-card__tag--cyan' : '']}>
                 {c.tag}

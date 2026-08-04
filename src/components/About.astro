@@ -25,7 +25,7 @@ const skills = [
     <div class="about__stats" data-reveal>
       {stats.map((s) => (
         <div class="about__stat">
-          <div class="num">{s.value}</div>
+          <div class="num" data-count={s.value}>{s.value}</div>
           <div class="label">{s.label}</div>
           <div class="sub">{s.sub}</div>
         </div>
@@ -33,9 +33,9 @@ const skills = [
     </div>
 
     <div class="about__text" data-reveal data-delay="120">
-      <div class="section__head" style="margin-bottom:1.2rem;">
-        <span class="section__kicker">About</span>
-        <h2 class="section__title">Automation is my passion.</h2>
+      <div class="section__head" data-num="04" style="margin-bottom:1.2rem;">
+        <span class="section__kicker" data-kicker-num="/ 04">About</span>
+        <h2 class="section__title">Automation is my <em>passion</em>.</h2>
       </div>
 
       <p>
