@@ -1,0 +1,56 @@
+---
+import Reveal from './Reveal.astro';
+
+const results = [
+  { value: '3,500+', name: 'Leads Found & Enriched', desc: 'Scraped, validated and AI-scored across 10 categories × 10 cities.' },
+  { value: '455+', name: 'Outreach Emails Delivered', desc: 'Validated, personalized, multi-channel — delivered with fallback.' },
+  { value: '77', name: 'Bounces Auto-Detected', desc: 'Invalid addresses cleaned automatically to protect deliverability.' },
+  { value: '100%', name: 'Pipeline Automated', desc: 'Find → enrich → reach → nurture. No manual steps.' },
+];
+---
+
+<section class="testimonials section" id="testimonials">
+  <Reveal>
+    <h2 class="section__title">
+      <span>Real Results</span>
+      <br />
+      From The Pipeline
+    </h2>
+  </Reveal>
+
+  <div class="testimonials__container container">
+    <div class="testimonial__content">
+      {[0, 1].map(() => (
+        <>
+          {results.map((r) => (
+            <article class="testimonials__card">
+              <div class="blob" aria-hidden="true"></div>
+              <div class="testimonials__data">
+                <b>{r.value}</b>
+                <h2 class="testimonials__name">{r.name}</h2>
+                <p>{r.desc}</p>
+              </div>
+            </article>
+          ))}
+        </>
+      ))}
+    </div>
+
+    <div class="testimonial__content testimonials__reverse">
+      {[0, 1].map(() => (
+        <>
+          {[...results].reverse().map((r) => (
+            <article class="testimonials__card">
+              <div class="blob" aria-hidden="true"></div>
+              <div class="testimonials__data">
+                <b>{r.value}</b>
+                <h2 class="testimonials__name">{r.name}</h2>
+                <p>{r.desc}</p>
+              </div>
+            </article>
+          ))}
+        </>
+      ))}
+    </div>
+  </div>
+</section>

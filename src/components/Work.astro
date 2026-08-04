@@ -1,0 +1,117 @@
+---
+import Reveal from './Reveal.astro';
+
+const experience = [
+  {
+    title: 'Automation & AI Systems Engineer',
+    subtitle: 'Rex Bunny Services · Self-built',
+    year: '2025-Present',
+    desc: 'Designed and shipped the lead generation & outreach pipeline (n8n, PocketBase, Ollama, Maileroo) — 3,500+ leads, 455+ emails, automatic bounce handling.',
+  },
+  {
+    title: 'Full-Stack Platform Builder',
+    subtitle: 'rexbunnyservices.online',
+    year: '2025',
+    desc: 'Built the full agency platform — Astro website, PocketBase backend, n8n automation, and hardened production security (Cloudflare headers, CSP).',
+  },
+  {
+    title: 'AI Agent Framework',
+    subtitle: 'MY Company · OpenCode + MCP',
+    year: '2026',
+    desc: 'Built an AI-agent operating system — CEO, sales, and SEO agents working 24/7 across strategy, outreach, and technical audits.',
+  },
+];
+
+const education = [
+  {
+    title: 'Self-Driven Engineering',
+    subtitle: 'Production AI & Web Systems',
+    year: '2025-Present',
+    desc: 'Hands-on engineering across AI agents, workflow automation, video generation pipelines, and full-stack web platforms.',
+  },
+  {
+    title: 'Creative AI Pipelines',
+    subtitle: 'ComfyUI · Generative Systems',
+    year: '2026',
+    desc: 'Built generative AI asset pipelines and an LTX-2 video generation API — from model loading to automated launcher infrastructure.',
+  },
+  {
+    title: 'Email & Deliverability',
+    subtitle: 'Listmonk · Titan · Maileroo',
+    year: '2025',
+    desc: 'Email marketing and nurture automation with validation, bounce detection, and multi-channel delivery fallback.',
+  },
+];
+---
+
+<section class="work section" id="work">
+  <Reveal>
+    <h2 class="section__title">
+      <span>My Work</span>
+      <br />
+      Experience
+    </h2>
+  </Reveal>
+
+  <div class="work__container container grid">
+    <Reveal>
+      <div class="work__tabs">
+        <button class="work__button work-active" data-target="#experience">
+          Experience <i class="ri-briefcase-3-line"></i>
+        </button>
+        <button class="work__button" data-target="#education">
+          Education <i class="ri-graduation-cap-line"></i>
+        </button>
+      </div>
+
+      <div class="work__area">
+        <div class="work__line"></div>
+
+        <div class="work__content work-active" data-content id="experience">
+          {experience.map((w) => (
+            <div class="work__card">
+              <div class="work__data">
+                <div>
+                  <h1 class="work__title">{w.title}</h1>
+                  <h3 class="work__subtitle">{w.subtitle}</h3>
+                </div>
+                <h2 class="work__year">{w.year}</h2>
+              </div>
+              <p class="work__description">{w.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="work__content" data-content id="education">
+          {education.map((w) => (
+            <div class="work__card">
+              <div class="work__data">
+                <div>
+                  <h1 class="work__title">{w.title}</h1>
+                  <h3 class="work__subtitle">{w.subtitle}</h3>
+                </div>
+                <h2 class="work__year">{w.year}</h2>
+              </div>
+              <p class="work__description">{w.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Reveal>
+  </div>
+</section>
+
+<script>
+  const buttons = document.querySelectorAll('.work__button');
+  const contents = document.querySelectorAll('[data-content]');
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      buttons.forEach((b) => b.classList.remove('work-active'));
+      contents.forEach((c) => c.classList.remove('work-active'));
+      btn.classList.add('work-active');
+      const target = document.querySelector(btn.dataset.target);
+      if (target) target.classList.add('work-active');
+    });
+  });
+</script>

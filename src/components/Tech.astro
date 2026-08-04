@@ -2,34 +2,33 @@
 import Reveal from './Reveal.astro';
 
 const tech = [
-  { cat: 'Frontend', items: ['Astro', 'HTML / CSS / JS', 'Responsive design', 'Accessibility'] },
-  { cat: 'Backend & Data', items: ['PocketBase', 'SQLite', 'REST APIs'] },
-  { cat: 'Automation', items: ['n8n', 'Docker', 'Cloudflared', 'Webhooks'] },
-  { cat: 'AI / LLMs', items: ['Google Gemini', 'Ollama (qwen)', 'OpenCode agents', 'MCP'] },
-  { cat: 'Creative AI', items: ['ComfyUI', 'Generative pipelines'] },
-  { cat: 'Email', items: ['Listmonk', 'Maileroo', 'Titan SMTP / IMAP', 'Bounce handling'] },
+  { cat: 'Frontend', skills: ['Astro', 'HTML', 'CSS', 'JavaScript', 'Responsive design', 'Accessibility'] },
+  { cat: 'Backend & Data', skills: ['PocketBase', 'SQLite', 'REST APIs'] },
+  { cat: 'Automation', skills: ['n8n', 'Docker', 'Cloudflared', 'Webhooks'] },
+  { cat: 'AI / LLMs', skills: ['Google Gemini', 'Ollama', 'OpenCode agents', 'MCP'] },
+  { cat: 'Creative AI', skills: ['ComfyUI', 'LTX-2', 'Generative pipelines'] },
+  { cat: 'Email', skills: ['Listmonk', 'Maileroo', 'Titan SMTP / IMAP', 'Bounce handling'] },
 ];
 ---
 
-<section id="stack">
-  <div class="container">
-    <Reveal>
-      <span class="section-label">Tech arsenal</span>
-      <h2 class="section-title">Tools I ship with</h2>
-      <p class="section-sub">
-        A modern, lightweight stack — chosen for speed, reliability, and zero vendor lock-in.
-      </p>
-    </Reveal>
+<section class="tech section" id="stack">
+  <Reveal>
+    <h2 class="section__title">
+      My Tech <br />
+      <span>Arsenal</span>
+    </h2>
+  </Reveal>
 
-    <div class="tech-grid">
-      {tech.map((t, i) => (
-        <Reveal className="tech-cat" delay={i * 60}>
+  <div class="tech__grid container grid">
+    {
+      tech.map((t, i) => (
+        <Reveal className="tech__cat" delay={(i % 3) * 60}>
           <h3>{t.cat}</h3>
-          <ul>
-            {t.items.map((item) => <li>{item}</li>)}
-          </ul>
+          <div class="tech__skills">
+            {t.skills.map((skill) => <span class="tech__skill">{skill}</span>)}
+          </div>
         </Reveal>
-      ))}
-    </div>
+      ))
+    }
   </div>
 </section>

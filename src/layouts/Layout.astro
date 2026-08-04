@@ -1,5 +1,4 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
 import '../styles/global.css';
 
 interface Props {
@@ -7,13 +6,13 @@ interface Props {
   description?: string;
 }
 
-const { title = 'Anass — Web Development, AI & Automation', description = 'Portfolio of Anass — building intelligent web platforms, AI agents and automation systems.' } = Astro.props;
+const { title = 'Mo. Anas Saifi — Web Development, AI & Automation', description = 'Portfolio of Mo. Anas Saifi — building intelligent web platforms, AI agents, automation systems and creative AI pipelines.' } = Astro.props;
 
 const navLinks = [
+  { href: '#about', label: 'About Me' },
+  { href: '#projects', label: 'Projects' },
+  { href: '#goals', label: 'Goals' },
   { href: '#services', label: 'Services' },
-  { href: '#work', label: 'Work' },
-  { href: '#case-study', label: 'Case Study' },
-  { href: '#stack', label: 'Stack' },
   { href: '#contact', label: 'Contact' },
 ];
 ---
@@ -25,48 +24,89 @@ const navLinks = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <meta name="author" content="Anass" />
+    <meta name="author" content="Mo. Anas Saifi" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta name="theme-color" content="#0a0a12" />
+    <meta name="theme-color" content="#0a0a14" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Unbounded:wght@200..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
     <title>{title}</title>
-    <ViewTransitions />
   </head>
   <body>
-    <div class="noise" aria-hidden="true"></div>
+    <!-- HEADER -->
+    <header class="header" id="header">
+      <div class="blob-animate" aria-hidden="true"></div>
+      <nav class="nav container">
+        <a href="#top" class="nav__logo">Anas<span class="home__split">.</span>dev</a>
 
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="Home">
-        <span class="brand-mark">A</span>
-        <span class="brand-text">anass<span class="accent">.</span>dev</span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-        {
-          navLinks.map((link) => (
-            <a href={link.href}>{link.label}</a>
-          ))
-        }
+        <div class="nav__menu">
+          <ul class="nav__list">
+            {
+              navLinks.map((link) => (
+                <li>
+                  <a href={link.href} class="nav__link">{link.label}</a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
       </nav>
-      <a class="btn btn-ghost btn-sm nav-cta" href="#contact">Let's talk</a>
     </header>
 
-    <main id="top">
+    <!-- CUSTOM CURSOR -->
+    <div class="cursor hide-cursor" id="cursor"></div>
+
+    <main class="main" id="top">
       <slot />
     </main>
 
-    <footer class="site-footer">
-      <div class="container footer-inner">
-        <p class="footer-brand">© {new Date().getFullYear()} Anass — built with Astro, deployed on Cloudflare Pages.</p>
-        <div class="footer-links">
-          <a href="https://github.com/rexbunnyservices-star" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://rexbunnyservices.online" target="_blank" rel="noopener">rexbunnyservices.online</a>
-        </div>
+    <!-- FOOTER -->
+    <footer class="footer grid">
+      <div class="blob-animate" aria-hidden="true"></div>
+      <div class="footer__copy">
+        All Rights Reserved By <span>Mo. Anas Saifi</span>
+      </div>
+      <div class="footer__year">
+        © <span id="footer-year">{new Date().getFullYear()}</span> · Built with Astro · Deployed on Cloudflare Pages
       </div>
     </footer>
+
+    <script>
+      // Custom cursor
+      const cursor = document.getElementById('cursor');
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = `${e.clientX}px`;
+        cursor.style.top = `${e.clientY}px`;
+        cursor.classList.remove('hide-cursor');
+      });
+      document.addEventListener('mouseleave', () => cursor.classList.add('hide-cursor'));
+
+      // Active nav link on scroll
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav__link');
+      const spy = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              navLinks.forEach((l) =>
+                l.classList.toggle('active-link', l.getAttribute('href') === `#${entry.target.id}`)
+              );
+            }
+          }
+        },
+        { rootMargin: '-40% 0px -55% 0px' }
+      );
+      sections.forEach((s) => spy.observe(s));
+    </script>
   </body>
 </html>

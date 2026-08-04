@@ -2,47 +2,89 @@
 import Reveal from './Reveal.astro';
 
 const stats = [
-  { value: '4+', label: 'Production systems shipped' },
-  { value: '3,500+', label: 'Leads automated & enriched' },
-  { value: '455+', label: 'Outreach emails delivered' },
-  { value: '3', label: 'Live services, one ecosystem' },
+  { value: '4+', label: 'Production systems' },
+  { value: '3,500+', label: 'Leads automated' },
+  { value: '455+', label: 'Emails delivered' },
+  { value: '100%', label: 'Pipeline automated' },
 ];
 ---
 
-<section class="hero" id="top">
-  <div class="hero-grid" aria-hidden="true"></div>
-  <div class="hero-orb orb-1" aria-hidden="true"></div>
-  <div class="hero-orb orb-2" aria-hidden="true"></div>
-
-  <div class="container hero-content">
-    <Reveal>
-      <span class="hero-kicker">// web · ai · automation</span>
-    </Reveal>
+<section class="home section section-top" id="top">
+  <div class="home__container container grid">
+    <div class="home__data">
+      <Reveal>
+        <h3 class="home__greeting">Hello, I'm</h3>
+        <h1 class="home__name">Mo. Anas Saifi</h1>
+        <p class="home__subtitle">Architecting complete digital ecosystems: AI Automations, Web Architecture, Lead Gen, and SEO under one roof.</p>
+      </Reveal>
+    </div>
 
     <Reveal delay={100}>
-      <h1 class="hero-title">
-        I build <span class="grad">intelligent systems</span> that grow businesses.
-      </h1>
-    </Reveal>
-
-    <Reveal delay={200}>
-      <p class="hero-desc">
-        I'm Anass — a developer crafting modern websites, AI agents, and automated pipelines
-        that turn complex operations into measurable results.
-      </p>
-    </Reveal>
-
-    <Reveal delay={300}>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#work">See my work</a>
-        <a class="btn btn-ghost" href="#contact">Get in touch</a>
+      <div class="home__image">
+        <div class="blob-animate" aria-hidden="true"></div>
+        <img
+          src="/hero-photo.png"
+          alt="Mo. Anas Saifi"
+          class="home__profile"
+        />
       </div>
     </Reveal>
 
+    <Reveal delay={200}>
+      <div class="home__info">
+        <h3 class="home__split">Creative</h3>
+        <h2 class="home__profession-1">Web · AI ·</h2>
+        <h2 class="home__profession-2">Automation</h2>
+      </div>
+    </Reveal>
+
+    <Reveal delay={300}>
+      <div class="home__social">
+        <a
+          href="https://github.com/rexbunnyservices-star"
+          target="_blank"
+          rel="noopener"
+          class="home__social-link"
+          aria-label="GitHub"
+        >
+          <i class="ri-github-line"></i>
+        </a>
+        <a
+          href="https://wa.me/919690380675"
+          target="_blank"
+          rel="noopener"
+          class="home__social-link"
+          aria-label="WhatsApp"
+        >
+          <i class="ri-whatsapp-line"></i>
+        </a>
+        <a
+          href="mailto:rexbunnyservices@gmail.com"
+          class="home__social-link"
+          aria-label="Email"
+        >
+          <i class="ri-mail-line"></i>
+        </a>
+        <a
+          href="https://rexbunnyservices.online"
+          target="_blank"
+          rel="noopener"
+          class="home__social-link"
+          aria-label="Website"
+        >
+          <i class="ri-global-line"></i>
+        </a>
+      </div>
+    </Reveal>
+
+    <a href="#contact" class="home__cv">
+      Contact Me <i class="ri-send-plane-line"></i>
+    </a>
+
     <Reveal delay={400}>
-      <div class="hero-stats">
+      <div class="home__stats">
         {stats.map((s) => (
-          <div class="stat">
+          <div class="home__stat">
             <b>{s.value}</b>
             <span>{s.label}</span>
           </div>

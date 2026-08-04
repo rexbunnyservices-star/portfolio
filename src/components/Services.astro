@@ -3,52 +3,71 @@ import Reveal from './Reveal.astro';
 
 const services = [
   {
-    icon: '🌐',
     title: 'Modern Web Development',
     desc: 'Fast, SEO-ready marketing sites and web apps with Astro, PocketBase and a hardened production setup.',
+    skills: ['Astro', 'HTML / CSS / JS', 'Responsive design', 'PocketBase', 'SEO', 'Cloudflare'],
   },
   {
-    icon: '🤖',
     title: 'AI Agents & Business Automation',
     desc: 'Strategic, sales, SEO and support agents that operate entire business functions on autopilot.',
+    skills: ['Gemini', 'OpenCode', 'MCP', 'Agent Framework', 'Ollama'],
   },
   {
-    icon: '⚙️',
     title: 'Workflow Automation',
     desc: 'n8n pipelines that connect your data, email, CRM and AI into one reliable, self-healing system.',
+    skills: ['n8n', 'Webhooks', 'Docker', 'REST APIs', 'SQLite'],
   },
   {
-    icon: '🎨',
     title: 'Generative AI & Creative Pipelines',
     desc: 'ComfyUI workflows that produce high-quality visual assets at scale for marketing and product.',
+    skills: ['ComfyUI', 'Generative AI', 'Video pipelines', 'LTX-2'],
   },
   {
-    icon: '📧',
     title: 'Email Marketing & Nurture',
     desc: 'Listmonk and SMTP campaigns with validation, bounce handling, and automated nurture sequences.',
+    skills: ['Listmonk', 'Maileroo', 'Titan SMTP', 'Bounce handling', 'Campaigns'],
   },
 ];
 ---
 
-<section id="services">
-  <div class="container">
-    <Reveal>
-      <span class="section-label">What I do</span>
-      <h2 class="section-title">Services</h2>
-      <p class="section-sub">
-        From a single landing page to a full AI-operated business — I build the systems that
-        keep working while you sleep.
-      </p>
-    </Reveal>
+<section class="services section" id="services">
+  <Reveal>
+    <h2 class="section__title">What I <span>Offer</span></h2>
+  </Reveal>
 
-    <div class="services-grid">
-      {services.map((s, i) => (
-        <Reveal className="service-card" delay={i * 80}>
-          <div class="service-icon" aria-hidden="true">{s.icon}</div>
-          <h3>{s.title}</h3>
-          <p>{s.desc}</p>
+  <div class="services__container container grid">
+    {
+      services.map((s, i) => (
+        <Reveal className="services__card services__close" delay={i * 60}>
+          <div class:list={['blob', i % 2 === 1 ? 'blob-2' : '']} aria-hidden="true"></div>
+
+          <div class="services__data">
+            <h2 class="services__title">{s.title}</h2>
+            <p class="services__description">{s.desc}</p>
+          </div>
+
+          <div class="services__info">
+            <h3 class="services__subtitle">Skills</h3>
+            <ul class="services__skills">
+              {s.skills.map((skill) => <li class="services__skill">{skill}</li>)}
+            </ul>
+          </div>
+
+          <button class="services__button" aria-label="Toggle skills">
+            <i class="ri-arrow-down-s-line"></i>
+          </button>
         </Reveal>
-      ))}
-    </div>
+      ))
+    }
   </div>
 </section>
+
+<script>
+  document.querySelectorAll('.services__card').forEach((card) => {
+    const btn = card.querySelector('.services__button');
+    btn?.addEventListener('click', () => {
+      card.classList.toggle('services__open');
+      card.classList.toggle('services__close');
+    });
+  });
+</script>

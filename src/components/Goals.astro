@@ -1,0 +1,67 @@
+---
+import Reveal from './Reveal.astro';
+
+const goals = [
+  {
+    icon: 'ri-robot-line',
+    value: '24/7',
+    title: 'Automate Business Operations',
+    desc: 'AI agents that run sales, SEO, content, and support on autopilot — a virtual team that never sleeps.',
+  },
+  {
+    icon: 'ri-user-search-line',
+    value: '3,500+',
+    title: 'Grow the Lead Pipeline',
+    desc: 'High-intent prospects found and enriched automatically — no more manual lead hunting.',
+  },
+  {
+    icon: 'ri-mail-send-line',
+    value: '455+',
+    title: 'Reach Prospects at Scale',
+    desc: 'Validated, multi-channel outreach that lands in the inbox — with automatic bounce protection.',
+  },
+  {
+    icon: 'ri-shield-check-line',
+    value: '77',
+    title: 'Protect Deliverability',
+    desc: 'Bounces detected and cleaned automatically so sender reputation stays healthy.',
+  },
+  {
+    icon: 'ri-battery-charge-line',
+    value: '100%',
+    title: 'Put Marketing on Autopilot',
+    desc: 'Find → enrich → reach → nurture. The entire pipeline runs itself, end to end.',
+  },
+  {
+    icon: 'ri-rocket-line',
+    value: '4+',
+    title: 'Ship Production Systems',
+    desc: 'Real, hardened, live systems — websites, backends, agents, and pipelines that deliver.',
+  },
+];
+---
+
+<section class="goals section" id="goals">
+  <Reveal>
+    <h2 class="section__title">
+      Goals We Help <br />
+      <span>You Achieve</span>
+    </h2>
+  </Reveal>
+
+  <div class="goals__grid container grid">
+    {
+      goals.map((g, i) => (
+        <Reveal className="goals__card" delay={(i % 3) * 80}>
+          <div class="blob" aria-hidden="true"></div>
+          <div class="goals__icon" aria-hidden="true">
+            <i class={g.icon}></i>
+          </div>
+          <b>{g.value}</b>
+          <h3>{g.title}</h3>
+          <p>{g.desc}</p>
+        </Reveal>
+      ))
+    }
+  </div>
+</section>

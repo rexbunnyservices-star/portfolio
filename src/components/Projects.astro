@@ -4,22 +4,24 @@ import Reveal from './Reveal.astro';
 const projects = [
   {
     num: '01',
+    cat: 'Full-Stack',
     title: 'Rex Bunny Services — Platform, Website & Backend',
     tagline: 'FULL-STACK · ASTRO · POCKETBASE',
-    desc: 'An end-to-end web platform for a full-service agency — a fast marketing site, a scalable backend, and the automation layer that powers the whole product.',
+    desc: 'An end-to-end web platform for a full-service agency — a fast marketing site, a scalable backend, and the automation layer powering the whole product.',
     facts: [
       'SEO-optimized marketing site built with Astro',
       'PocketBase backend exposed publicly via API',
-      'n8n workflow automation integrated into the core product',
+      'n8n workflow automation in the core product',
       'Hardened production setup — Cloudflare security headers, CSP, secure cookies',
     ],
     tags: ['Astro', 'PocketBase', 'n8n', 'Cloudflared', 'Docker'],
   },
   {
     num: '02',
-    title: 'MY Company — AI-Powered Business Operations',
+    cat: 'AI Agents',
+    title: 'AI-Powered Business Operations',
     tagline: 'AI AGENTS · AUTOMATION · STRATEGY',
-    desc: 'A complete AI-agent operating system where AI agents take on real company roles — planning strategy, running sales, and driving SEO — 24/7.',
+    desc: 'A complete AI-agent operating system where agents take on real company roles — planning strategy, running sales, and driving SEO — 24/7.',
     facts: [
       'CEO agent for strategic planning & creative direction',
       'Sales agent managing outreach, pipeline & client communication',
@@ -30,46 +32,112 @@ const projects = [
   },
   {
     num: '03',
-    title: 'MY Company ComfyUI — Creative AI Pipelines',
+    cat: 'Generative AI',
+    title: 'Creative AI Pipelines',
     tagline: 'GENERATIVE AI · COMFYUI · ASSETS',
     desc: 'A generative AI studio for producing visual content at scale — programmatic asset generation wired into the wider business ecosystem.',
     facts: [
       'ComfyUI workflows for creative asset generation',
-      'Managed asset pipeline integrated with MY Company',
+      'Managed asset pipeline integrated with the business ecosystem',
       'Bridges logic and creativity — AI for both reasoning and visuals',
     ],
     tags: ['ComfyUI', 'Generative AI', 'Automation'],
   },
+  {
+    num: '04',
+    cat: 'Lead Gen',
+    title: 'Automated Lead Gen & Outreach Pipeline',
+    tagline: 'n8n · POCKETBASE · OLLAMA · MAILEROO',
+    desc: 'An end-to-end system that finds, enriches, scores, and reaches out to prospects — entirely hands-off.',
+    facts: [
+      'Scrapes 10 categories × 10 cities for high-intent prospects',
+      'AI enrichment scores every lead, split into SEO vs web-dev tracks',
+      'Validated emails with multi-channel delivery & fallback',
+      'Auto-detected 77 bounces — 3,500+ leads, 455+ emails delivered',
+    ],
+    tags: ['n8n', 'PocketBase', 'Ollama', 'Maileroo', 'Titan SMTP'],
+  },
+  {
+    num: '05',
+    cat: 'Email Marketing',
+    title: 'Email Nurture Automation',
+    tagline: 'LISTMONK · WEEKLY CAMPAIGNS',
+    desc: 'A weekly campaign engine that keeps leads warm automatically — fetch, analyze, create, and send with zero manual work.',
+    facts: [
+      'Weekly schedule: fetch subscribers → analyze → create → send',
+      'Listmonk-based campaign management',
+      'Bounce-aware lists keep deliverability healthy',
+    ],
+    tags: ['Listmonk', 'n8n', 'Automation', 'Email'],
+  },
 ];
 ---
 
-<section id="work">
-  <div class="container">
-    <Reveal>
-      <span class="section-label">Featured work</span>
-      <h2 class="section-title">Showcase Projects</h2>
-      <p class="section-sub">
-        Three systems across the full spectrum — web, AI operations, and generative pipelines.
-      </p>
-    </Reveal>
+<section class="projects section" id="projects">
+  <Reveal>
+    <h2 class="section__title">
+      I make Incredible <br />
+      <span>Projects</span>
+    </h2>
+  </Reveal>
 
-    <div class="projects-grid">
-      {projects.map((p, i) => (
-        <Reveal className="project-card" delay={i * 90}>
-          <span class="project-num">{p.num}</span>
-          <h3 class="project-title">{p.title}</h3>
-          <div class="project-tagline">{p.tagline}</div>
-          <p class="project-desc">{p.desc}</p>
-          <ul class="project-facts">
-            {p.facts.map((f) => <li>{f}</li>)}
-          </ul>
-          <div class="tags">
-            {p.tags.map((t, j) => (
-              <span class:list={['tag', j % 2 === 0 ? 'tag-alt' : '']}>{t}</span>
-            ))}
-          </div>
-        </Reveal>
-      ))}
-    </div>
+  <div class="projects__container container grid">
+    <Reveal>
+      <div class="projects__track" id="projects-track">
+        {
+          projects.map((p) => (
+            <article class="projects__card">
+              <div class="blob" aria-hidden="true"></div>
+
+              <div class="projects__number">
+                <h1>{p.num}</h1>
+                <h3>{p.cat}</h3>
+              </div>
+
+              <div class="projects__data">
+                <h1 class="projects__title">{p.title}</h1>
+                <p class="projects__subtitle">{p.tagline}</p>
+                <p class="projects__description">{p.desc}</p>
+                <ul class="projects__facts">
+                  {p.facts.map((f) => <li>{f}</li>)}
+                </ul>
+              </div>
+
+              <div class="projects__tags">
+                {p.tags.map((t) => <span class="projects__tag">{t}</span>)}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="projects__nav">
+        <button id="projects-prev" aria-label="Previous project">
+          <i class="ri-arrow-left-line"></i>
+        </button>
+        <button id="projects-next" aria-label="Next project">
+          <i class="ri-arrow-right-line"></i>
+        </button>
+      </div>
+    </Reveal>
   </div>
 </section>
+
+<script>
+  const track = document.getElementById('projects-track');
+  const prev = document.getElementById('projects-prev');
+  const next = document.getElementById('projects-next');
+
+  if (track && prev && next) {
+    const scrollByCard = () => {
+      const card = track.querySelector('.projects__card');
+      return card ? card.getBoundingClientRect().width + 24 : 400;
+    };
+    prev.addEventListener('click', () => {
+      track.scrollBy({ left: -scrollByCard(), behavior: 'smooth' });
+    });
+    next.addEventListener('click', () => {
+      track.scrollBy({ left: scrollByCard(), behavior: 'smooth' });
+    });
+  }
+</script>
