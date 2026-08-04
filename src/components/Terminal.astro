@@ -1,0 +1,134 @@
+---
+interface OutLine {
+  t: string;
+  c?: string;
+}
+interface ScriptStep {
+  cmd: string;
+  out?: OutLine[];
+}
+interface Action {
+  label: string;
+  script: ScriptStep[];
+}
+interface Props {
+  title?: string;
+  prompt?: string;
+  script?: ScriptStep[];
+  actions?: Action[];
+}
+
+const { title = 'anas@dev:~', prompt = 'anas@dev:~$', script = [], actions = [] } = Astro.props;
+const initial = JSON.stringify(script);
+---
+
+<div class="terminal" data-terminal data-script={initial} data-title={title} data-prompt={prompt}>
+  <div class="terminal__bar">
+    <span class="dot" aria-hidden="true"></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="terminal__title">{title}</span>
+  </div>
+
+  <div class="terminal__body" role="log" aria-label="Interactive terminal demo">
+    <div class="terminal__cursor"></div>
+  </div>
+
+  {
+    actions.length > 0 && (
+      <div class="terminal__actions">
+        {actions.map((a) => (
+          <button type="button" class="terminal__action" data-action={a.label} data-action-script={JSON.stringify(a.script)}>
+            {a.label}
+          </button>
+        ))}
+      </div>
+    )
+  }
+</div>
+
+<script>
+  const terminals = document.querySelectorAll('[data-terminal]');
+
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+  async function typeText(node, text, speed) {
+    for (let i = 0; i <= text.length; i++) {
+      node.textContent = text.slice(0, i);
+      node.scrollTop = node.scrollHeight;
+      await sleep(speed);
+    }
+  }
+
+  function appendLine(body, html, cls = '') {
+    const line = document.createElement('div');
+    line.className = 'terminal__line' + (cls ? ' ' + cls : '');
+    line.innerHTML = html;
+    body.appendChild(line);
+    body.scrollTop = body.scrollHeight;
+    return line;
+  }
+
+  async function runScript(body, prompt, steps, { fast = false } = {}) {
+    for (const step of steps) {
+      const line = appendLine(body, `<span class="prompt">${prompt}</span> <span class="cmd"></span>`);
+      const cmd = line.querySelector('.cmd');
+      await typeText(cmd, step.cmd, fast ? 2 : 20);
+      if (step.out?.length) {
+        await sleep(fast ? 40 : 220);
+        for (const o of step.out) {
+          appendLine(body, escapeHtml(o.t), o.c || 'out');
+          await sleep(fast ? 20 : 90);
+        }
+      }
+      await sleep(fast ? 80 : 260);
+    }
+  }
+
+  function escapeHtml(s) {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  for (const term of terminals) {
+    const body = term.querySelector('.terminal__body');
+    const prompt = term.dataset.prompt || 'anas@dev:~$';
+    let script = [];
+    try {
+      script = JSON.parse(term.dataset.script || '[]');
+    } catch {
+      script = [];
+    }
+
+    const speed = matchMedia('(prefers-reduced-motion: reduce)').matches ? 1 : 20;
+    const baseDelay = speed === 1 ? 0 : 500;
+
+    (async () => {
+      await sleep(baseDelay);
+      await runScript(body, prompt, script, { fast: speed === 1 });
+      appendLine(body, `<span class="prompt">${prompt}</span> <span class="terminal__cursor"></span>`);
+    })();
+
+    term.querySelectorAll('.terminal__action').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        btn.classList.add('is-busy');
+        let actionScript = [];
+        try {
+          actionScript = JSON.parse(btn.dataset.actionScript || '[]');
+        } catch {
+          actionScript = [];
+        }
+        const clear = () => {
+          btn.classList.remove('is-busy');
+          btn.textContent = btn.textContent.replace(/ ✓$/, '');
+        };
+        const run = async () => {
+          await runScript(body, prompt, actionScript, { fast: true });
+          appendLine(body, `<span class="prompt">${prompt}</span> <span class="terminal__cursor"></span>`);
+          btn.textContent += ' ✓';
+          clear();
+        };
+        run();
+      });
+    });
+  }
+</script>

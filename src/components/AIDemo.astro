@@ -1,0 +1,78 @@
+---
+import Terminal from './Terminal.astro';
+
+const demoScript = [
+  {
+    cmd: 'ask-agent "How do I scale my lead gen?"',
+    out: [
+      { t: '⟶ routing to CEO agent...', c: 'hl' },
+      { t: '⟶ sales agent simulating outreach...', c: 'hl' },
+      { t: '✓ proposal generated in 4.2s', c: 'ok' },
+      { t: '✓ auto-enriched 214 new prospects overnight', c: 'ok' },
+    ],
+  },
+];
+
+const actions = [
+  {
+    label: 'try again',
+    script: [
+      { cmd: 'ask-agent "What is my next best action?"', out: [
+        { t: '⟶ analyzing 3,500+ lead pipeline...', c: 'hl' },
+        { t: '✓ 42 warm leads ready for outreach', c: 'ok' },
+        { t: '✓ next campaign queued for Monday 9am', c: 'ok' },
+      ] },
+    ],
+  },
+];
+
+const features = [
+  { icon: 'ri-robot-2-line', title: 'CEO agent', desc: 'Strategic planning and creative direction, always on.' },
+  { icon: 'ri-hand-heart-line', title: 'Sales agent', desc: 'Runs outreach, pipeline and client communication end-to-end.' },
+  { icon: 'ri-search-eye-line', title: 'SEO agent', desc: 'Technical audits and AI-search (AEO/GEO) visibility tracking.' },
+  { icon: 'ri-headphone-line', title: 'Support agents', desc: 'Content, support and web dev — each focused on its domain.' },
+];
+---
+
+<section class="section" id="ai">
+  <div class="container">
+    <div class="section__head" data-reveal>
+      <span class="section__kicker">AI Demo</span>
+      <h2 class="section__title">Talk to the agent.</h2>
+      <p class="section__lead">
+        This is a scripted preview of how an AI-agent system operates your
+        business — no backend, just the interface. Real agents run the same
+        workflows 24/7 behind the scenes.
+      </p>
+    </div>
+
+    <div class="ai-demo">
+      <Terminal
+        title="agent@anas — demo"
+        prompt="agent@anas:~$"
+        script={demoScript}
+        actions={actions}
+      />
+
+      <div>
+        <p class="section__lead" style="margin-bottom:1rem;">
+          Instead of one chatbot, I build a team of specialised agents — each
+          owning a business function and reporting into a shared pipeline.
+        </p>
+        <div class="ai-demo__list">
+          {
+            features.map((f, i) => (
+              <div class="ai-demo__item" data-reveal data-delay={i * 80}>
+                <i class={f.icon}></i>
+                <div>
+                  <h4>{f.title}</h4>
+                  <p>{f.desc}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

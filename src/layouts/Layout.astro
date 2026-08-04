@@ -6,50 +6,158 @@ interface Props {
   description?: string;
 }
 
-const { title = 'Mo. Anas Saifi — Web Development, AI & Automation', description = 'Portfolio of Mo. Anas Saifi — building intelligent web platforms, AI agents, automation systems and creative AI pipelines.' } = Astro.props;
+const { title = 'Mo. Anas Saifi — AI Agents, Web Architecture & Automation', description = 'Portfolio of Mo. Anas Saifi — architecting complete digital ecosystems: custom AI agents, web architecture, automated lead gen, and SEO/AEO/GEO under one roof.' } = Astro.props;
 
 const navLinks = [
-  { href: '#about', label: 'About Me' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#goals', label: 'Goals' },
-  { href: '#services', label: 'Services' },
+  { href: '#capabilities', label: 'Capabilities' },
+  { href: '#work', label: 'Case Studies' },
+  { href: '#about', label: 'Stack' },
+  { href: '#ai', label: 'AI Demo' },
   { href: '#contact', label: 'Contact' },
 ];
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Mo. Anas Saifi',
+  alternateName: 'Anas.dev',
+  url: 'https://portfolio.rexbunnyservices.online',
+  sameAs: [
+    'https://github.com/rexbunnyservices-star',
+    'https://wa.me/919690380675',
+    'https://rexbunnyservices.online',
+  ],
+  email: 'mailto:help@rexbunnyservices.online',
+  jobTitle: 'Web · AI · Automation Developer',
+  knowsAbout: ['Web Development', 'AI Agents', 'Automation', 'SEO', 'AEO', 'GEO', 'Lead Generation', 'n8n', 'Astro', 'PocketBase'],
+};
+
+const webSiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Anas.dev — Portfolio',
+  url: 'https://portfolio.rexbunnyservices.online',
+  author: { '@type': 'Person', name: 'Mo. Anas Saifi' },
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Anas.dev — Digital Ecosystem Architecture',
+  url: 'https://portfolio.rexbunnyservices.online',
+  description: 'Architecting complete digital ecosystems: AI automations, web architecture, lead generation, and SEO/AEO/GEO under one roof.',
+  areaServed: 'Worldwide',
+  makesOffer: [
+    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Custom AI Agents & Business Automation' } },
+    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Modern Web Development & Architecture' } },
+    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Automated Lead Generation & Outreach' } },
+    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'SEO / AEO / GEO Optimization' } },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What services do you offer?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Custom AI agents and business automation, modern web development with Astro and PocketBase, automated lead generation and outreach pipelines, and SEO/AEO/GEO optimization.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can you automate my entire lead generation process?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. I build end-to-end pipelines that discover, enrich, score, and reach out to prospects automatically — 3,500+ leads found and 455+ emails delivered with automatic bounce protection.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do you make businesses visible to AI engines?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'I apply AEO and GEO strategies — structured schema markup, semantic HTML, and extractable, answer-ready content — so businesses rank in both search engines and AI assistants like ChatGPT and Google AI Overviews.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you build AI agents that run 24/7?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. I build AI-agent systems that take on real company roles — CEO strategy, sales outreach, SEO audits, content, and support — operating around the clock on autopilot.',
+      },
+    },
+  ],
+};
+
+const schemas = [personSchema, webSiteSchema, serviceSchema, faqSchema];
 ---
 
 <!doctype html>
 
-<html lang="en">
+<html lang="en" class="no-js">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="author" content="Mo. Anas Saifi" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#050510" />
+    <link rel="canonical" href="https://portfolio.rexbunnyservices.online" />
+
+    <!-- Open Graph / Twitter -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta name="theme-color" content="#0a0a14" />
+    <meta property="og:url" content="https://portfolio.rexbunnyservices.online" />
+    <meta property="og:image" content="https://portfolio.rexbunnyservices.online/og-image.png" />
+    <meta property="og:site_name" content="Anas.dev" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://portfolio.rexbunnyservices.online/og-image.png" />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Fonts: Satoshi (Fontshare) + Inter & JetBrains Mono (Google) -->
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Unbounded:wght@200..900&display=swap"
+      href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,800,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
     />
+
+    <!-- Structured data -->
+    {schemas.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+
     <title>{title}</title>
   </head>
   <body>
+    <!-- PROGRESS BAR -->
+    <div class="progress" id="progress" aria-hidden="true"></div>
+
     <!-- HEADER -->
     <header class="header" id="header">
-      <div class="blob-animate" aria-hidden="true"></div>
       <nav class="nav container">
-        <a href="#top" class="nav__logo">Anas<span class="home__split">.</span>dev</a>
+        <a href="#top" class="nav__logo">
+          <span class="nav__dot" aria-hidden="true"></span>
+          Anas<span class="accent">.dev</span>
+        </a>
 
-        <div class="nav__menu">
+        <div class="nav__menu" id="nav-menu">
           <ul class="nav__list">
             {
               navLinks.map((link) => (
@@ -59,37 +167,117 @@ const navLinks = [
               ))
             }
           </ul>
+          <a href="#contact" class="nav__cta">
+            Let's Talk <i class="ri-arrow-right-up-line"></i>
+          </a>
         </div>
+
+        <button class="nav__burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </nav>
     </header>
 
     <!-- CUSTOM CURSOR -->
-    <div class="cursor hide-cursor" id="cursor"></div>
+    <div class="cursor" id="cursor" aria-hidden="true"></div>
 
     <main class="main" id="top">
       <slot />
     </main>
 
     <!-- FOOTER -->
-    <footer class="footer grid">
-      <div class="blob-animate" aria-hidden="true"></div>
-      <div class="footer__copy">
-        All Rights Reserved By <span>Mo. Anas Saifi</span>
+    <footer class="footer">
+      <div class="container footer__grid">
+        <div class="footer__brand">
+          <span class="nav__logo">
+            <span class="nav__dot" aria-hidden="true"></span>
+            Anas<span class="accent">.dev</span>
+          </span>
+          <p>Architecting complete digital ecosystems — AI, web, lead gen, and SEO under one roof.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Menu</h4>
+          <a href="#capabilities">Capabilities</a>
+          <a href="#work">Case Studies</a>
+          <a href="#ai">AI Demo</a>
+        </div>
+        <div class="footer__col">
+          <h4>Connect</h4>
+          <a href="https://github.com/rexbunnyservices-star" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://wa.me/919690380675" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="mailto:help@rexbunnyservices.online">Email</a>
+        </div>
       </div>
-      <div class="footer__year">
-        © <span id="footer-year">{new Date().getFullYear()}</span> · Built with Astro · Deployed on Cloudflare Pages
+      <div class="footer__bar">
+        <p>© <span id="footer-year">{new Date().getFullYear()}</span> Mo. Anas Saifi — All rights reserved</p>
+        <p>Built with Astro · Deployed on Cloudflare Pages</p>
       </div>
     </footer>
 
     <script>
-      // Custom cursor
-      const cursor = document.getElementById('cursor');
-      document.addEventListener('mousemove', (e) => {
-        cursor.style.left = `${e.clientX}px`;
-        cursor.style.top = `${e.clientY}px`;
-        cursor.classList.remove('hide-cursor');
+      import gsap from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+      import Lenis from 'lenis';
+
+      document.documentElement.classList.replace('no-js', 'js');
+
+      // Smooth scroll (Lenis) + scroll progress bar
+      const lenis = new Lenis({
+        duration: 1.15,
+        smoothWheel: true,
       });
-      document.addEventListener('mouseleave', () => cursor.classList.add('hide-cursor'));
+      lenis.on('scroll', () => {
+        const doc = document.documentElement;
+        const max = doc.scrollHeight - window.innerHeight;
+        const p = max > 0 ? (window.scrollY / max) * 100 : 0;
+        const bar = document.getElementById('progress');
+        if (bar) bar.style.transform = `scaleX(${p / 100})`;
+      });
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+      window.lenis = lenis;
+
+      // Anchor clicks → smooth scroll via Lenis
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener('click', (e) => {
+          const id = a.getAttribute('href');
+          if (id.length < 2) return;
+          const el = document.querySelector(id);
+          if (!el) return;
+          e.preventDefault();
+          lenis.scrollTo(el, { offset: -80, duration: 1.4 });
+        });
+      });
+
+      // Custom cursor (desktop only)
+      const cursor = document.getElementById('cursor');
+      const fine = window.matchMedia('(pointer: fine)').matches;
+      if (fine && cursor) {
+        let tx = 0, ty = 0, cx = 0, cy = 0;
+        document.addEventListener('mousemove', (e) => {
+          tx = e.clientX;
+          ty = e.clientY;
+          cursor.classList.add('cursor--on');
+        });
+        const growTargets = 'a, button, .magnetic, [data-cursor]';
+        document.addEventListener('mouseover', (e) => {
+          if (e.target.closest(growTargets)) cursor.classList.add('cursor--grow');
+        });
+        document.addEventListener('mouseout', (e) => {
+          if (e.target.closest(growTargets)) cursor.classList.remove('cursor--grow');
+        });
+        (function loop() {
+          cx += (tx - cx) * 0.16;
+          cy += (ty - cy) * 0.16;
+          cursor.style.transform = `translate(${cx - 12}px, ${cy - 12}px)`;
+          requestAnimationFrame(loop);
+        })();
+      }
 
       // Active nav link on scroll
       const sections = document.querySelectorAll('section[id]');
@@ -107,6 +295,52 @@ const navLinks = [
         { rootMargin: '-40% 0px -55% 0px' }
       );
       sections.forEach((s) => spy.observe(s));
+
+      // Header shadow on scroll
+      const header = document.getElementById('header');
+      const onScroll = () => header?.classList.toggle('is-scrolled', window.scrollY > 8);
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      // Mobile menu toggle
+      const burger = document.getElementById('nav-burger');
+      const menu = document.querySelector('.nav__menu');
+      if (burger && menu) {
+        burger.addEventListener('click', () => {
+          const open = menu.classList.toggle('is-open');
+          burger.classList.toggle('is-active', open);
+          burger.setAttribute('aria-expanded', String(open));
+        });
+        menu.addEventListener('click', (e) => {
+          if (e.target.closest('a')) {
+            menu.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      // GSAP reveal animations
+      gsap.registerPlugin(ScrollTrigger);
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduced) {
+        const items = gsap.utils.toArray('[data-reveal]');
+        items.forEach((el) => {
+          const delay = Number(el.dataset.delay || 0) / 1000;
+          gsap.fromTo(
+            el,
+            { y: 32, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.85,
+              ease: 'power3.out',
+              delay,
+              scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+            }
+          );
+        });
+      }
     </script>
   </body>
 </html>

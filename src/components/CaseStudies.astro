@@ -1,0 +1,84 @@
+---
+const cases = [
+  {
+    tag: 'Lead Gen',
+    cyan: false,
+    title: 'Automated Lead Gen & Outreach Pipeline',
+    desc: 'Scrapes 10 categories × 10 cities for high-intent prospects, AI-enriches every lead, then scores them into SEO vs web-dev tracks.',
+    metrics: ['3,500+ leads', '455+ emails', '77 bounces cleaned'],
+    tags: ['n8n', 'PocketBase', 'Ollama', 'Maileroo'],
+  },
+  {
+    tag: 'Full-Stack Platform',
+    cyan: true,
+    title: 'Rex Bunny Services — Website & Backend',
+    desc: 'A fast Astro marketing site, a PocketBase backend exposed publicly via API, and the n8n automation layer powering the whole product.',
+    metrics: ['Astro', 'PocketBase', 'CSP', 'Secure'],
+    tags: ['Astro', 'PocketBase', 'n8n', 'Cloudflared', 'Docker'],
+  },
+  {
+    tag: 'AI Agents',
+    cyan: false,
+    title: 'AI-Powered Business Operations',
+    desc: 'An AI-agent operating system where agents take on real company roles — CEO strategy, sales outreach, SEO audits — running 24/7.',
+    metrics: ['CEO agent', 'Sales agent', 'SEO agent'],
+    tags: ['Gemini', 'OpenCode', 'MCP'],
+  },
+  {
+    tag: 'Email Nurture',
+    cyan: true,
+    title: 'Weekly Email Nurture Automation',
+    desc: 'A campaign engine that keeps leads warm automatically — fetch subscribers, analyze, create, send — with bounce-aware lists.',
+    metrics: ['Weekly', 'Auto', 'Healthy lists'],
+    tags: ['Listmonk', 'n8n', 'Automation'],
+  },
+  {
+    tag: 'Generative AI',
+    cyan: false,
+    title: 'Creative AI Pipelines & Video API',
+    desc: 'A generative AI studio producing visual content at scale — ComfyUI workflows plus an LTX-2 video generation API with full launcher infrastructure.',
+    metrics: ['ComfyUI', 'LTX-2', 'API'],
+    tags: ['ComfyUI', 'Generative AI', 'LTX-2'],
+  },
+];
+---
+
+<section class="section" id="work">
+  <div class="container">
+    <div class="section__head" data-reveal>
+      <span class="section__kicker">Case Studies</span>
+      <h2 class="section__title">Systems I've shipped end-to-end.</h2>
+      <p class="section__lead">
+        Real projects, real infrastructure — from lead pipelines to full-stack
+        platforms, all designed to run themselves.
+      </p>
+    </div>
+
+    <div class="cases">
+      {
+        cases.map((c, i) => (
+          <article
+            class:list={['glass', 'case-card']}
+            data-reveal
+            data-delay={(i % 2) * 100}
+          >
+            <div class="case-card__top">
+              <span class:list={['case-card__tag', c.cyan ? 'case-card__tag--cyan' : '']}>
+                {c.tag}
+              </span>
+              <span class="case-card__arrow"><i class="ri-arrow-right-up-line"></i></span>
+            </div>
+            <h3>{c.title}</h3>
+            <p>{c.desc}</p>
+            <div class="case-card__metrics">
+              {c.metrics.map((m) => <span class="case-card__metric"><b>{m.split(' ')[0]}</b>{m.replace(m.split(' ')[0], '')}</span>)}
+            </div>
+            <div class="case-card__foot">
+              {c.tags.map((t) => <span class="skill-chip">{t}</span>)}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

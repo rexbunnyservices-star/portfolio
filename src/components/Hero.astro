@@ -1,95 +1,106 @@
 ---
-import Reveal from './Reveal.astro';
+import Terminal from './Terminal.astro';
 
-const stats = [
-  { value: '4+', label: 'Production systems' },
-  { value: '3,500+', label: 'Leads automated' },
-  { value: '455+', label: 'Emails delivered' },
-  { value: '100%', label: 'Pipeline automated' },
+const heroScript = [
+  {
+    cmd: 'whoami',
+    out: [{ t: 'Mo. Anas Saifi — Web · AI · Automation Developer', c: 'ok' }],
+  },
+  {
+    cmd: 'ls ./systems',
+    out: [
+      { t: 'agents/       lead-gen/     web/          seo/', c: 'hl' },
+    ],
+  },
+  {
+    cmd: './run-pipeline --full',
+    out: [
+      { t: '▶ discovering leads... 10 categories × 10 cities', c: 'out' },
+      { t: '✓ 3,500+ leads found & AI-scored', c: 'ok' },
+      { t: '✓ 455+ emails delivered · 77 bounces auto-cleaned', c: 'ok' },
+      { t: '✓ 4 systems online · 24/7 · 0 manual steps', c: 'ok' },
+    ],
+  },
+];
+
+const actions = [
+  {
+    label: 'run status',
+    script: [
+      { cmd: './status', out: [{ t: '● lead pipeline   [online] 24/7', c: 'ok' }, { t: '● ai agents       [online]', c: 'ok' }, { t: '● email outreach  [online]', c: 'ok' }] },
+    ],
+  },
+  {
+    label: 'view stack',
+    script: [
+      { cmd: 'cat ./stack', out: [{ t: 'astrotech · pocketbase · n8n · ollama · maileroo · listmonk', c: 'hl' }] },
+    ],
+  },
 ];
 ---
 
-<section class="home section section-top" id="top">
-  <div class="home__container container grid">
-    <div class="home__data">
-      <Reveal>
-        <h3 class="home__greeting">Hello, I'm</h3>
-        <h1 class="home__name">Mo. Anas Saifi</h1>
-        <p class="home__subtitle">Architecting complete digital ecosystems: AI Automations, Web Architecture, Lead Gen, and SEO under one roof.</p>
-      </Reveal>
+<section class="hero" id="top">
+  <div class="hero__beam" aria-hidden="true"></div>
+
+  <div class="container hero__grid">
+    <div class="hero__content">
+      <span class="hero__badge">
+        <span class="pulse-dot" aria-hidden="true"></span>
+        Available for new projects
+      </span>
+
+      <p class="hero__greeting">Hello, I'm</p>
+      <h1 class="hero__name">
+        Mo. Anas<br />Saifi<span class="accent">.</span>
+      </h1>
+
+      <p class="hero__subtitle">
+        Architecting <b>complete digital ecosystems</b> — AI automations, web
+        architecture, lead generation, and SEO/AEO/GEO under one roof.
+      </p>
+
+      <div class="hero__cta-row">
+        <a href="#contact" class="btn btn--primary">
+          Let's Talk <i class="ri-send-plane-fill"></i>
+        </a>
+        <a href="#work" class="btn btn--ghost">
+          View Case Studies <i class="ri-arrow-right-up-line"></i>
+        </a>
+      </div>
+
+      <div class="hero__meta">
+        <span class="hero__meta-item">
+          <i class="ri-flashlight-line"></i> 24/7 Automation
+        </span>
+        <span class="hero__meta-item">
+          <i class="ri-global-line"></i> Remote · Worldwide
+        </span>
+        <span class="hero__meta-item">
+          <i class="ri-verified-badge-line"></i> 4 Production Systems
+        </span>
+      </div>
     </div>
 
-    <Reveal delay={100}>
-      <div class="home__image">
-        <div class="blob-animate" aria-hidden="true"></div>
-        <img
-          src="/hero-photo.png"
-          alt="Mo. Anas Saifi"
-          class="home__profile"
-        />
-      </div>
-    </Reveal>
+    <div class="hero__visual" data-reveal data-delay="150">
+      <Terminal title="anas@dev — pipeline.sh" script={heroScript} actions={actions} />
 
-    <Reveal delay={200}>
-      <div class="home__info">
-        <h3 class="home__split">Creative</h3>
-        <h2 class="home__profession-1">Web · AI ·</h2>
-        <h2 class="home__profession-2">Automation</h2>
+      <div class="hero__photo-card" data-reveal data-delay="300">
+        <span class="stat-chip stat-chip--top">
+          <i class="ri-line-chart-line"></i> 3,500+ leads
+        </span>
+        <div class="hero__photo-frame">
+          <img
+            src="/hero-photo.png"
+            alt="Mo. Anas Saifi"
+            width="725"
+            height="1280"
+            loading="eager"
+          />
+        </div>
+        <span class="stat-chip stat-chip--bottom">
+          <i class="ri-mail-send-line"></i> 455+ sent
+        </span>
       </div>
-    </Reveal>
-
-    <Reveal delay={300}>
-      <div class="home__social">
-        <a
-          href="https://github.com/rexbunnyservices-star"
-          target="_blank"
-          rel="noopener"
-          class="home__social-link"
-          aria-label="GitHub"
-        >
-          <i class="ri-github-line"></i>
-        </a>
-        <a
-          href="https://wa.me/919690380675"
-          target="_blank"
-          rel="noopener"
-          class="home__social-link"
-          aria-label="WhatsApp"
-        >
-          <i class="ri-whatsapp-line"></i>
-        </a>
-        <a
-          href="mailto:rexbunnyservices@gmail.com"
-          class="home__social-link"
-          aria-label="Email"
-        >
-          <i class="ri-mail-line"></i>
-        </a>
-        <a
-          href="https://rexbunnyservices.online"
-          target="_blank"
-          rel="noopener"
-          class="home__social-link"
-          aria-label="Website"
-        >
-          <i class="ri-global-line"></i>
-        </a>
-      </div>
-    </Reveal>
-
-    <a href="#contact" class="home__cv">
-      Contact Me <i class="ri-send-plane-line"></i>
-    </a>
-
-    <Reveal delay={400}>
-      <div class="home__stats">
-        {stats.map((s) => (
-          <div class="home__stat">
-            <b>{s.value}</b>
-            <span>{s.label}</span>
-          </div>
-        ))}
-      </div>
-    </Reveal>
+    </div>
   </div>
 </section>

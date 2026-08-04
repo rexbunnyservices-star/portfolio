@@ -1,122 +1,97 @@
 ---
-import Reveal from './Reveal.astro';
-
 const businessEmail = 'help@rexbunnyservices.online';
-const personalEmail = 'rexbunnyservices@gmail.com';
+
+const channels = [
+  { icon: 'ri-mail-line', title: 'Email', value: businessEmail, href: `mailto:${businessEmail}` },
+  { icon: 'ri-whatsapp-line', title: 'WhatsApp', value: '+91 96903 80675', href: 'https://wa.me/919690380675' },
+  { icon: 'ri-github-line', title: 'GitHub', value: '@rexbunnyservices-star', href: 'https://github.com/rexbunnyservices-star' },
+  { icon: 'ri-global-line', title: 'Website', value: 'rexbunnyservices.online', href: 'https://rexbunnyservices.online' },
+];
 ---
 
-<section class="contact section" id="contact">
-  <div class="contact__container container grid">
-    <div class="contact__data">
-      <Reveal>
-        <h2 class="section__title">Contact Me</h2>
-        <p class="contact__description">Tell me about your next project.</p>
-
-        <button class="contact__button button" id="contact-btn">
-          Copy Email <i class="ri-file-copy-line"></i>
-          <span class="contact__email" id="contact-email">{businessEmail}</span>
-        </button>
-      </Reveal>
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section__head" data-reveal>
+      <span class="section__kicker">Contact</span>
+      <h2 class="section__title">Let's build your ecosystem.</h2>
+      <p class="section__lead">
+        Tell me about your project — whether it's an AI agent, a full platform,
+        or a lead pipeline that runs itself.
+      </p>
     </div>
 
-    <Reveal delay={120}>
-      <div class="contact__content grid">
-        <div class="contact__info grid">
-          <div>
-            <h3 class="contact__title">Business Email</h3>
-            <address class="contact__address">{businessEmail}</address>
-          </div>
-
-          <div>
-            <h3 class="contact__title">Personal Email</h3>
-            <address class="contact__address">{personalEmail}</address>
-          </div>
-
-          <div>
-            <h3 class="contact__title">Location</h3>
-            <address class="contact__address">Available Worldwide · Remote</address>
-          </div>
-        </div>
-
-        <div class="contact__social">
-          <h3 class="contact__title">Find Me</h3>
-          <div class="contact__links">
-            <a
-              href="https://github.com/rexbunnyservices-star"
-              target="_blank"
-              rel="noopener"
-              class="contact__link"
-            >
-              GitHub <i class="ri-arrow-right-up-long-line"></i>
+    <div class="contact__grid">
+      <div class="contact__channels" data-reveal>
+        {
+          channels.map((c) => (
+            <a class="contact__channel" href={c.href} target={c.href.startsWith('http') ? '_blank' : undefined} rel="noopener">
+              <span class="ic"><i class={c.icon}></i></span>
+              <div>
+                <h4>{c.title}</h4>
+                <p>{c.value}</p>
+              </div>
             </a>
-            <a
-              href="https://rexbunnyservices.online"
-              target="_blank"
-              rel="noopener"
-              class="contact__link"
-            >
-              Website <i class="ri-arrow-right-up-long-line"></i>
-            </a>
-            <a
-              href={`mailto:${personalEmail}`}
-              class="contact__link"
-            >
-              Gmail <i class="ri-arrow-right-up-long-line"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="contact__write">
-          <h3 class="contact__title">Write Me & We'll Talk</h3>
-          <div class="contact__links">
-            <a
-              href="https://wa.me/919690380675"
-              target="_blank"
-              rel="noopener"
-              class="contact__link"
-            >
-              WhatsApp <i class="ri-arrow-right-up-long-line"></i>
-            </a>
-            <a
-              href={`mailto:${businessEmail}`}
-              class="contact__link"
-            >
-              Business Email <i class="ri-arrow-right-up-long-line"></i>
-            </a>
-            <a
-              href={`mailto:${personalEmail}`}
-              class="contact__link"
-            >
-              Personal Email <i class="ri-arrow-right-up-long-line"></i>
-            </a>
-          </div>
+          ))
+        }
+        <div class="contact__aside">
+          <i class="ri-time-line"></i>
+          Typically replies within 24 hours · Worldwide, remote
         </div>
       </div>
-    </Reveal>
+
+      <form class="glass contact__card" id="contact-form" data-reveal data-delay="120">
+        <h3>Send a message</h3>
+        <p>Fill this in and it opens your email client pre-filled.</p>
+
+        <div class="contact__field">
+          <label for="cf-name">Name</label>
+          <input id="cf-name" name="name" type="text" placeholder="Your name" required />
+        </div>
+
+        <div class="contact__field">
+          <label for="cf-email">Email</label>
+          <input id="cf-email" name="email" type="email" placeholder="you@company.com" required />
+        </div>
+
+        <div class="contact__field">
+          <label for="cf-msg">Message</label>
+          <textarea id="cf-msg" name="message" placeholder="Tell me about your project..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn--primary" style="width:100%;">
+          Send Message <i class="ri-send-plane-fill"></i>
+        </button>
+        <div class="form-status" id="form-status" role="status"></div>
+      </form>
+    </div>
   </div>
 </section>
 
 <script>
-  const btn = document.getElementById('contact-btn');
-  btn?.addEventListener('click', async () => {
-    const email = document.getElementById('contact-email')?.textContent?.trim();
-    if (!email) return;
-    try {
-      await navigator.clipboard.writeText(email);
-    } catch {
-      const ta = document.createElement('textarea');
-      ta.value = email;
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      ta.remove();
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('cf-name')?.value.trim();
+    const email = document.getElementById('cf-email')?.value.trim();
+    const message = document.getElementById('cf-msg')?.value.trim();
+
+    if (!name || !email || !message) {
+      if (status) {
+        status.textContent = 'Please fill in all fields.';
+        status.className = 'form-status is-error';
+      }
+      return;
     }
-    const icon = btn.querySelector('i');
-    if (icon) icon.className = 'ri-check-line';
-    btn.classList.add('contact-btn-copied');
-    setTimeout(() => {
-      if (icon) icon.className = 'ri-file-copy-line';
-      btn.classList.remove('contact-btn-copied');
-    }, 2000);
+
+    const subject = encodeURIComponent(`Project inquiry from ${name}`);
+    const body = encodeURIComponent(`Hi Anas,\n\n${message}\n\n— ${name}\n${email}`);
+    window.location.href = `mailto:${'help@rexbunnyservices.online'}?subject=${subject}&body=${body}`;
+
+    if (status) {
+      status.textContent = 'Opening your email client...';
+      status.className = 'form-status';
+    }
   });
 </script>

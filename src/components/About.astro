@@ -1,39 +1,64 @@
 ---
-import Reveal from './Reveal.astro';
+const stats = [
+  { value: '3,500+', label: 'Leads Found', sub: 'AI-scored across 100 niches' },
+  { value: '455+', label: 'Emails Delivered', sub: 'Validated · multi-channel' },
+  { value: '77', label: 'Bounces Cleaned', sub: 'Automatic deliverability' },
+  { value: '24/7', label: 'Systems Online', sub: 'Zero manual steps' },
+];
+
+const skills = [
+  { icon: 'ri-reactjs-line', label: 'Astro' },
+  { icon: 'ri-database-2-line', label: 'PocketBase' },
+  { icon: 'ri-flow-chart', label: 'n8n' },
+  { icon: 'ri-robot-2-line', label: 'Ollama / Gemini' },
+  { icon: 'ri-mail-send-line', label: 'Maileroo' },
+  { icon: 'ri-mail-open-line', label: 'Listmonk' },
+  { icon: 'ri-bubble-chart-line', label: 'ComfyUI / LTX-2' },
+  { icon: 'ri-cloud-line', label: 'Cloudflare' },
+  { icon: 'ri-docker-line', label: 'Docker' },
+  { icon: 'ri-search-line', label: 'SEO / AEO / GEO' },
+];
 ---
 
-<section class="about section" id="about">
-  <div class="about__container container grid">
-    <div class="about__data">
-      <Reveal>
-        <h2 class="section__title">
-          <span>Automation</span>
-          <br />
-          Is My Passion
-        </h2>
-        <p class="about__description">
-          I'm a <b>Web · AI · Automation Developer</b> who builds intelligent
-          platforms and self-running systems — modern websites, AI agents, and
-          automation pipelines that turn complex operations into
-          <b> measurable results </b> while you sleep.
-        </p>
-      </Reveal>
-
-      <Reveal delay={120}>
-        <div class="about__actions">
-          <a href="#projects" class="button">
-            My Projects <i class="ri-arrow-right-up-long-line"></i>
-          </a>
-          <a
-            href="https://wa.me/919690380675"
-            target="_blank"
-            rel="noopener"
-            class="button"
-          >
-            Let's Talk <i class="ri-whatsapp-line"></i>
-          </a>
+<section class="section" id="about">
+  <div class="container about__grid">
+    <div class="about__stats" data-reveal>
+      {stats.map((s) => (
+        <div class="about__stat">
+          <div class="num">{s.value}</div>
+          <div class="label">{s.label}</div>
+          <div class="sub">{s.sub}</div>
         </div>
-      </Reveal>
+      ))}
+    </div>
+
+    <div class="about__text" data-reveal data-delay="120">
+      <div class="section__head" style="margin-bottom:1.2rem;">
+        <span class="section__kicker">About</span>
+        <h2 class="section__title">Automation is my passion.</h2>
+      </div>
+
+      <p>
+        I'm a <b>Web · AI · Automation Developer</b> who builds intelligent
+        platforms and self-running systems — modern websites, AI agents, and
+        automation pipelines that turn complex operations into{' '}
+        <b>measurable results</b> while you sleep.
+      </p>
+      <p>
+        From a hardened Astro + PocketBase platform to a lead-gen engine that
+        discovered and enriched <b>3,500+ prospects</b> on autopilot, I design
+        ecosystems where every moving part is automated, monitored, and
+        self-healing.
+      </p>
+
+      <div class="about__skills">
+        {skills.map((s) => (
+          <span class="skill-chip">
+            <i class={s.icon}></i>
+            {s.label}
+          </span>
+        ))}
+      </div>
     </div>
   </div>
 </section>

@@ -1,0 +1,39 @@
+---
+const results = [
+  { icon: 'ri-focus-3-line', value: '3,500+', label: 'Leads found & enriched' },
+  { icon: 'ri-mail-send-line', value: '455+', label: 'Outreach emails delivered' },
+  { icon: 'ri-eraser-line', value: '77', label: 'Bounces auto-detected' },
+  { icon: 'ri-cpu-line', value: '100%', label: 'Pipeline automated' },
+  { icon: 'ri-time-line', value: '24/7', label: 'Systems online, always' },
+  { icon: 'ri-shield-check-line', value: '4+', label: 'Production systems live' },
+];
+---
+
+<section class="section" id="results">
+  <div class="container">
+    <div class="section__head" data-reveal>
+      <span class="section__kicker">Results</span>
+      <h2 class="section__title">Real numbers from the pipeline.</h2>
+      <p class="section__lead">
+        Not projected figures — live metrics measured while the systems run on
+        their own.
+      </p>
+    </div>
+
+    <div class="results__grid">
+      {
+        results.map((r, i) => (
+          <div
+            class:list={['glass', 'result-card']}
+            data-reveal
+            data-delay={(i % 3) * 90}
+          >
+            <i class={r.icon}></i>
+            <div class="num">{r.value}</div>
+            <div class="label">{r.label}</div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

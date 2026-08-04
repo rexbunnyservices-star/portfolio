@@ -1,0 +1,125 @@
+---
+const cards = [
+  {
+    icon: 'ri-robot-2-line',
+    tint: 'cyan',
+    wide: true,
+    title: 'AI Agents & Business Automation',
+    desc: 'Strategic, sales, SEO and support agents that operate entire business functions on autopilot — powered by Gemini, OpenCode, MCP and Ollama.',
+    list: [
+      { label: 'CEO agent', detail: 'strategy & creative direction' },
+      { label: 'Sales agent', detail: 'outreach, pipeline & comms' },
+      { label: 'SEO agent', detail: 'technical audits & AI-search visibility' },
+    ],
+  },
+  {
+    icon: 'ri-global-line',
+    tint: 'emerald',
+    title: 'Web Development & Architecture',
+    desc: 'Fast, SEO-ready marketing sites and web apps with Astro, PocketBase and a hardened production setup.',
+    tags: ['Astro', 'HTML/CSS/JS', 'PocketBase', 'Cloudflare', 'Responsive'],
+  },
+  {
+    icon: 'ri-flow-chart',
+    tint: 'amber',
+    title: 'Workflow Automation',
+    desc: 'n8n pipelines connecting your data, email, CRM and AI into one reliable, self-healing system.',
+    tags: ['n8n', 'Webhooks', 'Docker', 'REST APIs', 'SQLite'],
+  },
+  {
+    icon: 'ri-mail-send-line',
+    tint: 'emerald',
+    wide: true,
+    feature: { metric: '455+', label: 'emails delivered hands-free' },
+    title: 'Lead Gen & Email Outreach',
+    desc: 'An end-to-end system that finds, enriches, scores, and reaches out to prospects — entirely hands-off. Bounce-aware lists keep deliverability healthy.',
+    list: [
+      { label: 'Scrapes 10 categories × 10 cities', detail: 'high-intent prospects' },
+      { label: 'AI enrichment', detail: 'SEO vs web-dev scoring tracks' },
+      { label: 'Multi-channel delivery', detail: 'Maileroo + Titan SMTP fallback' },
+    ],
+  },
+  {
+    icon: 'ri-sparkling-2-line',
+    tint: 'cyan',
+    title: 'Generative AI & Creative Pipelines',
+    desc: 'ComfyUI workflows that produce high-quality visual and video assets at scale — including an LTX-2 video generation API.',
+    tags: ['ComfyUI', 'LTX-2', 'Video pipelines', 'Generative AI'],
+  },
+  {
+    icon: 'ri-search-eye-line',
+    tint: 'emerald',
+    title: 'SEO / AEO / GEO',
+    desc: 'Get found by humans and AI engines alike — structured data, semantic HTML, and answer-ready content for ChatGPT & AI Overviews.',
+    tags: ['Schema.org', 'JSON-LD', 'Canonicals', 'Content'],
+  },
+  {
+    icon: 'ri-mail-open-line',
+    tint: 'amber',
+    title: 'Email Nurture',
+    desc: 'Weekly campaign engines that keep leads warm automatically — fetch, analyze, create, send. Zero manual work.',
+    tags: ['Listmonk', 'Campaigns', 'Bounce handling'],
+  },
+];
+
+---
+
+<section class="section" id="capabilities">
+  <div class="container">
+    <div class="section__head" data-reveal>
+      <span class="section__kicker">Capabilities</span>
+      <h2 class="section__title">One ecosystem. Every engine running.</h2>
+      <p class="section__lead">
+        Services, tech and goals merged into one integrated stack — each piece
+        feeding the next so your business runs itself.
+      </p>
+    </div>
+
+    <div class="bento">
+      {
+        cards.map((card) => (
+          <article
+            class:list={['glass', 'bento__card', card.wide ? 'bento__card--wide' : '']}
+            data-tint={card.tint}
+            data-reveal
+            data-delay={(card.id % 3) * 100}
+          >
+            <span class="bento__icon"><i class={card.icon}></i></span>
+            <h3>{card.title}</h3>
+            <p>{card.desc}</p>
+
+            {
+              card.list && (
+                <ul class="bento__list">
+                  {card.list.map((li) => (
+                    <li>
+                      <i class="ri-check-line"></i>
+                      <span><b>{li.label}</b> — {li.detail}</span>
+                    </li>
+                  ))}
+                </ul>
+              )
+            }
+
+            {
+              card.feature && (
+                <div class="bento__feature">
+                  <div class="metric">{card.feature.metric}</div>
+                  <div class="metric-label">{card.feature.label}</div>
+                </div>
+              )
+            }
+
+            {
+              card.tags && (
+                <div class="bento__tags">
+                  {card.tags.map((t) => <span class="skill-chip">{t}</span>)}
+                </div>
+              )
+            }
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

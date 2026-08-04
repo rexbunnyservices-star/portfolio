@@ -1,0 +1,27 @@
+---
+const items = [
+  'AI Agents',
+  'Web Architecture',
+  'Lead Generation',
+  'n8n Automation',
+  'SEO / AEO / GEO',
+  'Email Outreach',
+  'PocketBase',
+  'Ollama',
+  'Astro',
+  'Generative AI',
+  'Listmonk',
+  'Cloudflare',
+];
+---
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    {[...items, ...items].map((item) => (
+      <span class="marquee__item">
+        <i class="ri-flashlight-fill"></i>
+        {item}
+      </span>
+    ))}
+  </div>
+</div>
