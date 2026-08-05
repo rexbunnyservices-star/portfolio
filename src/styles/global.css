@@ -594,6 +594,7 @@ html.no-js .reveal {
   color: var(--ink-bright);
   overflow-wrap: break-word;
   word-break: break-word;
+  white-space: nowrap;
   max-width: 100%;
 }
 .hero__name .serif {
