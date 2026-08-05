@@ -533,7 +533,7 @@ html.no-js .reveal {
     "visual visual";
   gap: clamp(1.5rem, 3vw, 3rem) clamp(2rem, 5vw, 6rem);
   align-items: center;
-  padding-inline: clamp(1.5rem, 5vw, 5rem);
+  padding-inline: clamp(1rem, 3vw, 3rem);
 }
 
 .hero__badge {
@@ -574,7 +574,8 @@ html.no-js .reveal {
   grid-area: text;
   align-items: flex-start;
   text-align: left;
-  max-width: 48ch;
+  max-width: 52ch;
+  margin-inline: auto;
 }
 
 .hero__greeting {
