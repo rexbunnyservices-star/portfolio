@@ -1,0 +1,63 @@
+---
+interface Props {
+  className?: string;
+}
+const { className = '' } = Astro.props;
+---
+
+<div class:list={['three-scene', className]} aria-hidden="true">
+  <canvas class="three-scene__canvas" data-three-canvas></canvas>
+  <div class="three-scene__fallback" data-three-fallback></div>
+</div>
+
+<style>
+  .three-scene {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    pointer-events: none;
+  }
+  .three-scene__canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .three-scene__fallback {
+    position: absolute;
+    inset: 0;
+    display: none;
+    background:
+      radial-gradient(52% 52% at 50% 42%, hsl(262 85% 63% / 0.28), transparent 70%),
+      radial-gradient(38% 38% at 62% 60%, hsl(190 90% 62% / 0.16), transparent 72%);
+    filter: blur(10px);
+  }
+  .three-scene.is-fallback .three-scene__canvas { display: none; }
+  .three-scene.is-fallback .three-scene__fallback { display: block; }
+  @media (prefers-reduced-motion: reduce) {
+    .three-scene.is-static .three-scene__canvas { display: none; }
+    .three-scene.is-static .three-scene__fallback { display: block; }
+  }
+</style>
+
+<script>
+  const root = document.currentScript?.closest('.three-scene') ?? null;
+  if (root) {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) root.classList.add('is-static');
+
+    const io = new IntersectionObserver(
+      async (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          io.disconnect();
+          const { initThreeScene } = await import('../scripts/threeScene');
+          initThreeScene(root as HTMLElement);
+        }
+      },
+      { rootMargin: '160px 0px' }
+    );
+    io.observe(root);
+  }
+</script>

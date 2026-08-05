@@ -7,30 +7,33 @@ const demoScript = [
     out: [
       { t: '⟶ routing to CEO agent...', c: 'hl' },
       { t: '⟶ sales agent simulating outreach...', c: 'hl' },
+      { t: '⟶ SEO agent scoring 42 warm leads...', c: 'hl' },
       { t: '✓ proposal generated in 4.2s', c: 'ok' },
       { t: '✓ auto-enriched 214 new prospects overnight', c: 'ok' },
+      { t: '→ next campaign queued for Monday 9am', c: 'dim' },
     ],
   },
 ];
 
 const actions = [
   {
-    label: 'try again',
+    label: 'run again',
     script: [
       { cmd: 'ask-agent "What is my next best action?"', out: [
         { t: '⟶ analyzing 3,500+ lead pipeline...', c: 'hl' },
         { t: '✓ 42 warm leads ready for outreach', c: 'ok' },
-        { t: '✓ next campaign queued for Monday 9am', c: 'ok' },
+        { t: '✓ draft email sequence prepared (SEO track)', c: 'ok' },
+        { t: '✓ bounce-cleanup scheduled for 02:00', c: 'ok' },
       ] },
     ],
   },
 ];
 
-const features = [
-  { icon: 'ri-robot-2-line', title: 'CEO agent', desc: 'Strategic planning and creative direction, always on.' },
-  { icon: 'ri-hand-heart-line', title: 'Sales agent', desc: 'Runs outreach, pipeline and client communication end-to-end.' },
-  { icon: 'ri-search-eye-line', title: 'SEO agent', desc: 'Technical audits and AI-search (AEO/GEO) visibility tracking.' },
-  { icon: 'ri-headphone-line', title: 'Support agents', desc: 'Content, support and web dev — each focused on its domain.' },
+const agents = [
+  { icon: 'ri-cpu-line', name: 'CEO', job: 'Strategy & planning', color: 'violet', ops: ['reviewing funnel KPIs', 'planning Q3 roadmap', 'assigning campaign goals'] },
+  { icon: 'ri-hand-heart-line', name: 'Sales', job: 'Outreach & pipeline', color: 'cyan', ops: ['scoring 42 warm leads', 'composing follow-ups', 'updating CRM pipeline'] },
+  { icon: 'ri-search-eye-line', name: 'SEO', job: 'Technical audits', color: 'gold', ops: ['crawling 214 pages', 'checking AEO/GEO signals', 'indexing fixes'] },
+  { icon: 'ri-cloud-line', name: 'Ops', job: 'Infra & automation', color: 'violet', ops: ['watching n8n workers', 'running bounce cleanup', 'rotating API keys'] },
 ];
 ---
 
@@ -59,14 +62,19 @@ const features = [
           Instead of one chatbot, I build a team of specialised agents — each
           owning a business function and reporting into a shared pipeline.
         </p>
-        <div class="ai-demo__list">
+        <div class="ai-demo__list" data-agent-swarm>
           {
-            features.map((f, i) => (
-              <div class="ai-demo__item" data-reveal data-delay={i * 80}>
-                <i class={f.icon}></i>
-                <div>
-                  <h4>{f.title}</h4>
-                  <p>{f.desc}</p>
+            agents.map((a, i) => (
+              <div class:list={['ai-demo__item', `ai-demo__item--${a.color}`]} data-agent data-reveal data-delay={i * 80}>
+                <i class={a.icon}></i>
+                <div class="ai-demo__body">
+                  <div class="ai-demo__head">
+                    <h4>{a.name}</h4>
+                    <span class="ai-demo__status"><i data-status-dot></i><span data-status-text>idle</span></span>
+                  </div>
+                  <p>{a.job}</p>
+                  <span class="ai-demo__op" data-status-op>waiting for signal</span>
+                  <span class="ai-demo__progress" aria-hidden="true"><i data-status-bar></i></span>
                 </div>
               </div>
             ))
@@ -76,3 +84,47 @@ const features = [
     </div>
   </div>
 </section>
+
+<script>
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduced) {
+    const items = Array.from(document.querySelectorAll('[data-agent]'));
+    const startAll = () => {
+      items.forEach((card, idx) => {
+        const status = card.querySelector('[data-status-text]');
+        const op = card.querySelector('[data-status-op]');
+        const bar = card.querySelector('[data-status-bar]');
+        // read ops from inline comment-free JSON bound via agent index in closure
+        const pool = [
+          ['working', 'scoring 42 warm leads'],
+          ['working', 'composing follow-ups'],
+          ['done', 'pipeline updated'],
+          ['idle', 'waiting for signal'],
+        ];
+        let cycle = 0;
+        const step = () => {
+          const [state, label] = pool[cycle % pool.length];
+          status.textContent = state;
+          card.dataset.state = state;
+          op.textContent = label;
+          bar.style.width = state === 'done' ? '100%' : state === 'working' ? '68%' : '0%';
+          cycle += 1;
+        };
+        setTimeout(() => {
+          step();
+          setInterval(step, 2600 + idx * 700);
+        }, 1200 + idx * 550);
+      });
+    };
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) {
+          startAll();
+          io.disconnect();
+        }
+      }
+    }, { rootMargin: '0px 0px -30px 0px' });
+    const swarm = document.querySelector('[data-agent-swarm]');
+    if (swarm) io.observe(swarm);
+  }
+</script>

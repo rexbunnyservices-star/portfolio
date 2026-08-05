@@ -2,77 +2,87 @@
 const cases = [
   {
     tag: 'Lead Gen',
-    cyan: false,
+    accent: 'violet',
     title: 'Automated Lead Gen & Outreach Pipeline',
     desc: 'Scrapes 10 categories × 10 cities for high-intent prospects, AI-enriches every lead, then scores them into SEO vs web-dev tracks.',
     metrics: ['3,500+ leads', '455+ emails', '77 bounces cleaned'],
     tags: ['n8n', 'PocketBase', 'Ollama', 'Maileroo'],
+    live: 'Live · 24/7',
+    slider: { before: '2.1%', after: '38.4%', cap: 'AI search visibility' },
     preview: {
       icon: 'ri-focus-3-line',
       ghost: 'LF·GEN',
-      from: 'hsl(17 88% 50% / 0.32)',
-      to: 'hsl(320 4% 13%)',
-      accent: 'hsl(17 88% 50%)',
+      from: 'hsl(262 85% 63% / 0.32)',
+      to: 'hsl(250 10% 8%)',
+      accent: 'hsl(262 85% 63%)',
     },
   },
   {
     tag: 'Full-Stack Platform',
-    cyan: true,
+    accent: 'cyan',
     title: 'Rex Bunny Services — Website & Backend',
     desc: 'A fast Astro marketing site, a PocketBase backend exposed publicly via API, and the n8n automation layer powering the whole product.',
     metrics: ['Astro', 'PocketBase', 'CSP', 'Secure'],
     tags: ['Astro', 'PocketBase', 'n8n', 'Cloudflared', 'Docker'],
+    live: 'Live · Production',
+    slider: { before: '58', after: '99', cap: 'PageSpeed score' },
     preview: {
       icon: 'ri-rocket-2-line',
       ghost: 'REX·HQ',
-      from: 'hsl(0 0% 24%)',
-      to: 'hsl(320 4% 12%)',
-      accent: 'hsl(30 81% 69%)',
+      from: 'hsl(190 90% 62% / 0.3)',
+      to: 'hsl(250 10% 8%)',
+      accent: 'hsl(190 90% 62%)',
     },
   },
   {
     tag: 'AI Agents',
-    cyan: false,
+    accent: 'violet',
     title: 'AI-Powered Business Operations',
     desc: 'An AI-agent operating system where agents take on real company roles — CEO strategy, sales outreach, SEO audits — running 24/7.',
     metrics: ['CEO agent', 'Sales agent', 'SEO agent'],
     tags: ['Gemini', 'OpenCode', 'MCP'],
+    live: 'Live · 24/7',
+    slider: { before: '0', after: '24/7', cap: 'Hours of manual ops' },
     preview: {
       icon: 'ri-robot-2-line',
       ghost: 'AI·OPS',
-      from: 'hsl(20 86% 56% / 0.34)',
-      to: 'hsl(320 4% 13%)',
-      accent: 'hsl(20 86% 56%)',
+      from: 'hsl(285 80% 66% / 0.34)',
+      to: 'hsl(250 10% 8%)',
+      accent: 'hsl(285 80% 66%)',
     },
   },
   {
     tag: 'Email Nurture',
-    cyan: true,
+    accent: 'gold',
     title: 'Weekly Email Nurture Automation',
     desc: 'A campaign engine that keeps leads warm automatically — fetch subscribers, analyze, create, send — with bounce-aware lists.',
     metrics: ['Weekly', 'Auto', 'Healthy lists'],
     tags: ['Listmonk', 'n8n', 'Automation'],
+    live: 'Live · Weekly',
+    slider: { before: '2.3%', after: '11.8%', cap: 'Click-through rate' },
     preview: {
       icon: 'ri-mail-open-line',
       ghost: 'NURTURE',
-      from: 'hsl(20 7% 16%)',
-      to: 'hsl(320 4% 12%)',
-      accent: 'hsl(30 81% 69%)',
+      from: 'hsl(42 95% 62% / 0.3)',
+      to: 'hsl(250 10% 8%)',
+      accent: 'hsl(42 95% 62%)',
     },
   },
   {
     tag: 'Generative AI',
-    cyan: false,
+    accent: 'cyan',
     title: 'Creative AI Pipelines & Video API',
     desc: 'A generative AI studio producing visual content at scale — ComfyUI workflows plus an LTX-2 video generation API with full launcher infrastructure.',
     metrics: ['ComfyUI', 'LTX-2', 'API'],
     tags: ['ComfyUI', 'Generative AI', 'LTX-2'],
+    live: 'Live · On demand',
+    slider: { before: '4h', after: '41min', cap: 'Avg. render time' },
     preview: {
       icon: 'ri-sparkling-2-line',
       ghost: 'GEN·AI',
-      from: 'hsl(17 88% 50% / 0.3)',
-      to: 'hsl(320 4% 11%)',
-      accent: 'hsl(17 88% 50%)',
+      from: 'hsl(262 85% 63% / 0.3)',
+      to: 'hsl(250 10% 8%)',
+      accent: 'hsl(262 85% 63%)',
     },
   },
 ];
@@ -94,22 +104,46 @@ const cases = [
         cases.map((c, i) => (
           <article
             class:list={['glass', 'case-card']}
+            data-tint={c.accent}
             data-reveal
             data-delay={(i % 2) * 100}
           >
             <div class="case-card__preview" style={`--cv-from: ${c.preview.from}; --cv-to: ${c.preview.to}; --cv-accent: ${c.preview.accent};`}>
-              <span class="case-card__preview-icon"><i class={c.preview.icon}></i></span>
+              <div class="mockup">
+                <div class="mockup__bar">
+                  <span class="mockup__dots"><i></i><i></i><i></i></span>
+                  <span class="mockup__url">{c.preview.ghost.toLowerCase()}.dev</span>
+                  <span class="mockup__secure"><i class="ri-lock-line"></i></span>
+                </div>
+                <div class="mockup__body">
+                  <span class="case-card__preview-icon"><i class={c.preview.icon}></i></span>
+                </div>
+              </div>
               <span class="case-card__preview-ghost">{c.preview.ghost}</span>
               <span class="case-card__preview-grid" aria-hidden="true"></span>
+              <span class="live-tag"><i class="ri-signal-tower-line"></i>{c.live}</span>
             </div>
             <div class="case-card__top">
-              <span class:list={['case-card__tag', c.cyan ? 'case-card__tag--cyan' : '']}>
+              <span class:list={['case-card__tag', c.accent === 'cyan' ? 'case-card__tag--cyan' : c.accent === 'gold' ? 'case-card__tag--gold' : '']}>
                 {c.tag}
               </span>
               <span class="case-card__arrow"><i class="ri-arrow-right-up-line"></i></span>
             </div>
             <h3>{c.title}</h3>
             <p>{c.desc}</p>
+
+            <div class="case-card__slider" data-slider>
+              <span class="case-card__slider-cap">{c.slider.cap}</span>
+              <div class="case-card__slider-track" data-slider-track>
+                <div class="case-card__slider-fill" data-slider-fill></div>
+                <span class="case-card__slider-knob" data-slider-knob></span>
+              </div>
+              <div class="case-card__slider-vals">
+                <span data-slider-before>{c.slider.before}</span>
+                <span data-slider-after>{c.slider.after}</span>
+              </div>
+            </div>
+
             <div class="case-card__metrics">
               {c.metrics.map((m) => <span class="case-card__metric"><b>{m.split(' ')[0]}</b>{m.replace(m.split(' ')[0], '')}</span>)}
             </div>
@@ -122,3 +156,55 @@ const cases = [
     </div>
   </div>
 </section>
+
+<script>
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduced) {
+    // before/after slider sweep — fills once on view, loops gently
+    const tracks = document.querySelectorAll('[data-slider-track]');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const track = entry.target;
+          observer.unobserve(track);
+          const card = track.closest('[data-slider]');
+          const fill = track.querySelector('[data-slider-fill]');
+          const knob = track.querySelector('[data-slider-knob]');
+          const before = card.querySelector('[data-slider-before]');
+          const after = card.querySelector('[data-slider-after]');
+          let p = 0;
+          const set = (val) => {
+            p = val;
+            fill.style.width = `${p}%`;
+            knob.style.left = `${p}%`;
+            before.classList.toggle('is-dim', p > 50);
+            after.classList.toggle('is-dim', p < 50);
+          };
+          const sweep = () => {
+            requestAnimationFrame(() => set(82));
+          };
+          setTimeout(sweep, 500);
+        }
+      },
+      { rootMargin: '0px 0px -40px 0px' }
+    );
+    tracks.forEach((t) => observer.observe(t));
+
+    // Fallback for anchor-jumps that skip mid-page: sweep any track left unfilled
+    setTimeout(() => {
+      tracks.forEach((track) => {
+        const fill = track.querySelector('[data-slider-fill]');
+        if (!fill || fill.style.width) return;
+        const card = track.closest('[data-slider]');
+        const knob = track.querySelector('[data-slider-knob]');
+        const before = card.querySelector('[data-slider-before]');
+        const after = card.querySelector('[data-slider-after]');
+        fill.style.width = '82%';
+        knob.style.left = '82%';
+        before.classList.add('is-dim');
+        after.classList.remove('is-dim');
+      });
+    }, 3500);
+  }
+</script>

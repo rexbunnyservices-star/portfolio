@@ -1,5 +1,6 @@
 ---
 import Terminal from './Terminal.astro';
+import ThreeScene from './ThreeScene.astro';
 
 const heroScript = [
   {
@@ -41,6 +42,7 @@ const actions = [
 
 <section class="hero" id="top">
   <div class="hero__beam" aria-hidden="true"></div>
+  <ThreeScene className="hero__scene" />
 
   <div class="container hero__grid">
     <div class="hero__content hero__content--left" data-reveal>

@@ -2,10 +2,11 @@
 const cards = [
   {
     icon: 'ri-robot-2-line',
-    tint: 'cyan',
+    tint: 'violet',
     wide: true,
     title: 'AI Agents & Business Automation',
     desc: 'Strategic, sales, SEO and support agents that operate entire business functions on autopilot — powered by Gemini, OpenCode, MCP and Ollama.',
+    demo: 'agents',
     list: [
       { label: 'CEO agent', detail: 'strategy & creative direction' },
       { label: 'Sales agent', detail: 'outreach, pipeline & comms' },
@@ -14,21 +15,30 @@ const cards = [
   },
   {
     icon: 'ri-global-line',
-    tint: 'emerald',
+    tint: 'cyan',
     title: 'Web Development & Architecture',
     desc: 'Fast, SEO-ready marketing sites and web apps with Astro, PocketBase and a hardened production setup.',
+    demo: 'code',
     tags: ['Astro', 'HTML/CSS/JS', 'PocketBase', 'Cloudflare', 'Responsive'],
   },
   {
+    icon: 'ri-search-eye-line',
+    tint: 'violet',
+    title: 'SEO / AEO / GEO',
+    desc: 'Get found by humans and AI engines alike — structured data, semantic HTML, and answer-ready content.',
+    demo: 'seo',
+    tags: ['Schema.org', 'JSON-LD', 'Canonicals', 'Content'],
+  },
+  {
     icon: 'ri-flow-chart',
-    tint: 'amber',
+    tint: 'gold',
     title: 'Workflow Automation',
     desc: 'n8n pipelines connecting your data, email, CRM and AI into one reliable, self-healing system.',
     tags: ['n8n', 'Webhooks', 'Docker', 'REST APIs', 'SQLite'],
   },
   {
     icon: 'ri-mail-send-line',
-    tint: 'emerald',
+    tint: 'violet',
     wide: true,
     feature: { metric: '455+', label: 'emails delivered hands-free' },
     title: 'Lead Gen & Email Outreach',
@@ -47,21 +57,13 @@ const cards = [
     tags: ['ComfyUI', 'LTX-2', 'Video pipelines', 'Generative AI'],
   },
   {
-    icon: 'ri-search-eye-line',
-    tint: 'emerald',
-    title: 'SEO / AEO / GEO',
-    desc: 'Get found by humans and AI engines alike — structured data, semantic HTML, and answer-ready content for ChatGPT & AI Overviews.',
-    tags: ['Schema.org', 'JSON-LD', 'Canonicals', 'Content'],
-  },
-  {
     icon: 'ri-mail-open-line',
-    tint: 'amber',
+    tint: 'gold',
     title: 'Email Nurture',
     desc: 'Weekly campaign engines that keep leads warm automatically — fetch, analyze, create, send. Zero manual work.',
     tags: ['Listmonk', 'Campaigns', 'Bounce handling'],
   },
 ];
-
 ---
 
 <section class="section" id="capabilities">
@@ -87,6 +89,68 @@ const cards = [
             <span class="bento__icon"><i class={card.icon}></i></span>
             <h3>{card.title}</h3>
             <p>{card.desc}</p>
+
+            {
+              card.demo === 'agents' && (
+                <div class="bento-demo" data-demo="agents">
+                  <div class="bento-demo__feed" data-agents-feed>
+                    <div class="bento-demo__row is-live">
+                      <i class="ri-robot-2-line"></i>
+                      <span class="bento-demo__agent">sales@</span>
+                      <span class="bento-demo__msg">scored 42 new prospects</span>
+                      <span class="bento-demo__time">now</span>
+                    </div>
+                  </div>
+                </div>
+              )
+            }
+
+            {
+              card.demo === 'code' && (
+                <div class="bento-demo" data-demo="code">
+                  <div class="code-snippet">
+                    <div class="code-snippet__bar">
+                      <span class="code-snippet__dot"></span>
+                      <span class="code-snippet__dot"></span>
+                      <span class="code-snippet__dot"></span>
+                      <span class="code-snippet__file">astro.config.mjs</span>
+                      <span class="code-snippet__live">LIVE</span>
+                    </div>
+                    <pre class="code-snippet__pre"><code><span class="tok-k">export default</span> <span class="tok-fn">defineConfig</span>(<span class="tok-k">&#123;</span><span class="nl">
+</span>  <span class="tok-k">site</span>: <span class="tok-s">'&lt;your-site&gt;'</span>,<span class="nl">
+</span>  <span class="tok-k">output</span>: <span class="tok-s">'static'</span>,<span class="nl">
+</span>  <span class="tok-k">perf</span>: &#123; <span class="tok-v">score</span>: <span class="tok-n">100</span> &#125;,<span class="nl">
+</span><span class="tok-k">&#125;</span>);</code></pre>
+                  </div>
+                </div>
+              )
+            }
+
+            {
+              card.demo === 'seo' && (
+                <div class="bento-demo" data-demo="seo">
+                  <div class="seo-toggle">
+                    <div class="seo-toggle__labels">
+                      <span class="seo-toggle__label is-active" data-mode="before">Before</span>
+                      <span class="seo-toggle__label" data-mode="after">After</span>
+                    </div>
+                    <div class="seo-toggle__track" data-seo-track>
+                      <div class="seo-toggle__knob" data-seo-knob></div>
+                    </div>
+                    <div class="seo-toggle__stats" data-seo-stats>
+                      <div class="seo-toggle__stat">
+                        <span class="seo-toggle__metric" data-seo-metric>2.1%</span>
+                        <span class="seo-toggle__cap">AI visibility</span>
+                      </div>
+                      <div class="seo-toggle__stat">
+                        <span class="seo-toggle__metric" data-seo-metric>#38</span>
+                        <span class="seo-toggle__cap">AI rank</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )
+            }
 
             {
               card.list && (
@@ -123,3 +187,77 @@ const cards = [
     </div>
   </div>
 </section>
+
+<script>
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduced) {
+    // ——— AI agents live feed ———
+    const feed = document.querySelector('[data-agents-feed]');
+    if (feed) {
+      const agents = ['sales@', 'seo@', 'ceo@', 'content@'];
+      const msgs = [
+        'scored 42 new prospects',
+        'published 3 audit fixes',
+        'replied to 2 inbound leads',
+        'refreshed 14 schema blocks',
+        'queued 60 nurture emails',
+        'scraped 3 more cities',
+      ];
+      const badge = (a) => (a === 'sales@' ? 'ri-robot-2-line' : a === 'seo@' ? 'ri-search-eye-line' : a === 'ceo@' ? 'ri-cpu-line' : 'ri-quill-pen-line');
+      let count = 0;
+      const push = () => {
+        const agent = agents[Math.floor(Math.random() * agents.length)];
+        const msg = msgs[Math.floor(Math.random() * msgs.length)];
+        const row = document.createElement('div');
+        row.className = 'bento-demo__row is-fade';
+        row.innerHTML = `<i class="${badge(agent)}"></i><span class="bento-demo__agent">${agent}</span><span class="bento-demo__msg">${msg}</span><span class="bento-demo__time">now</span>`;
+        feed.prepend(row);
+        const kids = feed.children;
+        while (kids.length > 3) kids[kids.length - 1].remove();
+        if (count++ > 5 && feed.firstElementChild) {
+          const last = feed.firstElementChild;
+          last.classList.remove('is-fade');
+          last.classList.add('is-live');
+        }
+      };
+      push();
+      const t = setInterval(push, 2600);
+      window.__agentsFeedTimer = t;
+    }
+
+    // ——— SEO before/after toggle ———
+    const track = document.querySelector('[data-seo-track]');
+    const knob = document.querySelector('[data-seo-knob]');
+    const labels = document.querySelectorAll('[data-seo-before], [data-seo-after]');
+    const metricEl = document.querySelector('[data-seo-metric]');
+    const capEl = document.querySelector('.seo-toggle__cap');
+    if (track && knob && metricEl) {
+      const stats = {
+        before: ['2.1%', 'AI visibility'],
+        after: ['38.4%', 'AI visibility'],
+      };
+      const apply = (mode) => {
+        const [m, cap] = stats[mode];
+        metricEl.textContent = m;
+        capEl.textContent = cap;
+        labels.forEach((l) => l.classList.toggle('is-active', l.dataset.mode === mode));
+        knob.style.transform = mode === 'after' ? 'translateX(22px)' : 'translateX(0)';
+      };
+      track.addEventListener('click', () => {
+        const isAfter = metricEl.textContent === stats.after[0];
+        apply(isAfter ? 'before' : 'after');
+      });
+      apply('before');
+      let cycle;
+      const startCycle = () => {
+        cycle = setInterval(() => {
+          const isAfter = metricEl.textContent === stats.after[0];
+          apply(isAfter ? 'before' : 'after');
+        }, 3200);
+      };
+      startCycle();
+      track.addEventListener('mouseenter', () => clearInterval(cycle));
+      track.addEventListener('mouseleave', startCycle);
+    }
+  }
+</script>
