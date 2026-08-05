@@ -533,7 +533,7 @@ html.no-js .reveal {
     "visual visual";
   gap: clamp(1.5rem, 3vw, 3rem) clamp(2rem, 5vw, 6rem);
   align-items: center;
-  padding-inline: clamp(2rem, 6vw, 6rem);
+  padding-inline: clamp(3rem, 8vw, 8rem);
 }
 
 .hero__badge {
