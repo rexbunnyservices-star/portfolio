@@ -478,7 +478,7 @@ html.no-js .reveal {
 .hero {
   position: relative;
   min-height: 100vh;
-  display: flex;
+  display: grid;
   align-items: center;
   padding-block: clamp(6rem, 10vw, 9rem);
 }
