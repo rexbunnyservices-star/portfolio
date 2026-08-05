@@ -43,7 +43,7 @@ const actions = [
   <div class="hero__beam" aria-hidden="true"></div>
 
   <div class="container hero__grid">
-    <div class="hero__content">
+    <div class="hero__content hero__content--left" data-reveal>
       <span class="hero__badge">
         <span class="pulse-dot" aria-hidden="true"></span>
         Available for new projects
@@ -53,8 +53,31 @@ const actions = [
       <h1 class="hero__name">
         Mo. Anas<br /><span class="serif">Saifi.</span>
       </h1>
+    </div>
 
-      <p class="hero__subtitle">
+    <div class="hero__content hero__content--center" data-reveal data-delay="150">
+      <div class="hero__photo-card" data-reveal data-delay="300">
+        <span class="stat-chip stat-chip--top">
+          <i class="ri-line-chart-line"></i> 3,500+ leads
+        </span>
+        <div class="hero__photo-frame">
+          <div class="hero__glow" aria-hidden="true"></div>
+          <img
+            src="/hero-photo.png"
+            alt="Mo. Anas Saifi"
+            width="368"
+            height="460"
+            loading="eager"
+          />
+        </div>
+        <span class="stat-chip stat-chip--bottom">
+          <i class="ri-mail-send-line"></i> 455+ sent
+        </span>
+      </div>
+    </div>
+
+    <div class="hero__content hero__content--right" data-reveal data-delay="300">
+      <p class="hero__quote">
         Architecting <b>complete digital ecosystems</b> — AI automations, web
         architecture, lead generation, and SEO/AEO/GEO under one roof.
       </p>
@@ -83,24 +106,6 @@ const actions = [
 
     <div class="hero__visual" data-reveal data-delay="150">
       <Terminal title="anas@dev — pipeline.sh" script={heroScript} actions={actions} />
-
-      <div class="hero__photo-card" data-reveal data-delay="300">
-        <span class="stat-chip stat-chip--top">
-          <i class="ri-line-chart-line"></i> 3,500+ leads
-        </span>
-        <div class="hero__photo-frame">
-          <img
-            src="/hero-photo.jpg"
-            alt="Mo. Anas Saifi"
-            width="725"
-            height="1280"
-            loading="eager"
-          />
-        </div>
-        <span class="stat-chip stat-chip--bottom">
-          <i class="ri-mail-send-line"></i> 455+ sent
-        </span>
-      </div>
     </div>
   </div>
 </section>

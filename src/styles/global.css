@@ -495,14 +495,18 @@ html.no-js .reveal {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: clamp(2rem, 5vw, 4rem);
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-areas:
+    "left   center  right"
+    "visual visual  visual";
+  gap: clamp(1.5rem, 3vw, 3rem) clamp(1.5rem, 4vw, 4rem);
   align-items: center;
 }
 
 .hero__badge {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   padding: 0.45rem 1rem;
   border-radius: var(--radius-pill);
@@ -524,6 +528,26 @@ html.no-js .reveal {
   animation: dot-pulse 2s ease-in-out infinite;
 }
 
+.hero__content {
+  display: flex;
+  flex-direction: column;
+}
+.hero__content--left {
+  grid-area: left;
+  align-items: flex-start;
+  text-align: left;
+}
+.hero__content--center {
+  grid-area: center;
+  align-items: center;
+}
+.hero__content--right {
+  grid-area: right;
+  align-items: flex-start;
+  text-align: left;
+  max-width: 40ch;
+}
+
 .hero__greeting {
   font-family: var(--mono);
   font-size: var(--fs-sm);
@@ -532,11 +556,11 @@ html.no-js .reveal {
 }
 
 .hero__name {
-  font-size: clamp(2.9rem, 7vw, 5.6rem);
+  font-size: clamp(2.8rem, 7vw, 6.5rem);
   font-weight: var(--fw-black);
   line-height: 0.98;
   letter-spacing: -0.03em;
-  margin-bottom: 1.2rem;
+  margin-bottom: 0;
   color: var(--ink-bright);
 }
 .hero__name .serif {
@@ -549,16 +573,25 @@ html.no-js .reveal {
   color: transparent;
 }
 
-.hero__subtitle {
-  font-size: clamp(1.05rem, 2vw, 1.25rem);
+.hero__quote {
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
   color: var(--muted);
-  max-width: 46ch;
   margin-bottom: 2rem;
+  line-height: 1.6;
 }
-
-.hero__subtitle b {
+.hero__quote b {
   color: var(--ink);
   font-weight: var(--fw-semi);
+}
+.hero__quote::before {
+  content: "“";
+  display: block;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 3.2rem;
+  line-height: 0.6;
+  color: var(--accent);
+  margin-bottom: 1.1rem;
 }
 
 .hero__cta-row {
@@ -587,16 +620,22 @@ html.no-js .reveal {
   font-size: 1.1rem;
 }
 
-/* hero right — terminal + photo */
+/* hero visual — terminal below the full lockup */
 .hero__visual {
   position: relative;
+  grid-area: visual;
   display: flex;
   flex-direction: column;
-  gap: 1.4rem;
+  align-items: center;
+  gap: 2.2rem;
+  width: 100%;
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
 }
 
 /* =============== TERMINAL =============== */
 .terminal {
+  width: 100%;
+  max-width: 720px;
   background: linear-gradient(180deg, rgba(10, 10, 10, 0.85), rgba(6, 6, 6, 0.9));
   border: 1px solid hsl(17 88% 50% / 0.25);
   border-radius: var(--radius);
@@ -699,49 +738,45 @@ html.no-js .reveal {
 }
 .terminal__action.is-busy { opacity: 0.5; pointer-events: none; }
 
-/* photo card */
+/* photo — transparent bust cutout, centered, with faded circle glow beneath */
 .hero__photo-card {
   position: relative;
-  padding: 1rem;
-  background: var(--glass);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  width: min(34vw, 340px);
 }
 .hero__photo-frame {
   position: relative;
-  overflow: hidden;
-  border-radius: var(--radius);
-  aspect-ratio: 4 / 5;
-  background: radial-gradient(120% 120% at 50% 0%, hsl(17 88% 50% / 0.12), transparent 60%);
-}
-.hero__photo-frame::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(160deg, hsl(17 88% 50% / 0.55), transparent 40%, transparent 62%, hsl(0 0% 93% / 0.14));
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask-composite: exclude;
-  pointer-events: none;
+  overflow: visible;
+  display: flex;
+  justify-content: center;
 }
 .hero__photo-frame img {
+  position: relative;
+  z-index: 1;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), filter 0.6s ease;
+  height: auto;
+  display: block;
+  filter: saturate(1.04) contrast(1.02);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .hero__photo-card:hover .hero__photo-frame img {
-  transform: scale(1.04);
-  filter: saturate(1.12) contrast(1.04);
+  transform: scale(1.03);
+}
+.hero__glow {
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  top: 58%;
+  width: 82%;
+  aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(50% 50% at 50% 50%, hsl(17 88% 50% / 0.38), hsl(20 86% 56% / 0.14) 48%, transparent 72%);
+  filter: blur(24px);
+  pointer-events: none;
 }
 .hero__photo-card .stat-chip {
   position: absolute;
+  z-index: 2;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -755,13 +790,13 @@ html.no-js .reveal {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 .hero__photo-card .stat-chip--top {
-  top: 2rem;
-  right: -0.6rem;
+  top: 1.2rem;
+  right: -1.6rem;
   color: var(--muted);
 }
 .hero__photo-card .stat-chip--bottom {
-  bottom: 2rem;
-  left: -0.6rem;
+  bottom: 1.2rem;
+  left: -1.6rem;
   color: var(--accent);
 }
 .hero__photo-card .stat-chip i { font-size: 1rem; }
@@ -1454,7 +1489,33 @@ html.no-js .reveal {
 
 /* =============== BREAKPOINTS =============== */
 @media (max-width: 960px) {
-  .hero__grid,
+  .hero__grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "left"
+      "center"
+      "right"
+      "visual";
+    gap: 2.5rem;
+    justify-items: center;
+  }
+  .hero__content--left,
+  .hero__content--right {
+    align-items: center;
+    text-align: center;
+  }
+  .hero__content--right {
+    max-width: 46ch;
+  }
+  .hero__cta-row {
+    justify-content: center;
+  }
+  .hero__meta {
+    justify-content: center;
+  }
+  .hero__photo-card {
+    width: min(46vw, 340px);
+  }
   .about__grid,
   .ai-demo,
   .contact__grid {
@@ -1462,12 +1523,6 @@ html.no-js .reveal {
   }
   .hero {
     min-height: auto;
-  }
-  .hero__visual {
-    order: 0;
-  }
-  .hero__content {
-    order: 1;
   }
   .bento__card,
   .bento__card--wide {
@@ -1549,6 +1604,18 @@ html.no-js .reveal {
   }
   .hero__meta {
     gap: 1rem;
+  }
+  .hero__photo-card {
+    width: min(74vw, 300px);
+  }
+  .hero__photo-card .stat-chip--top {
+    right: -0.4rem;
+  }
+  .hero__photo-card .stat-chip--bottom {
+    left: -0.4rem;
+  }
+  .hero__name {
+    font-size: clamp(2.6rem, 15vw, 4rem);
   }
 }
 
