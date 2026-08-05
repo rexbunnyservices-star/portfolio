@@ -39,9 +39,9 @@ export function initThreeScene(root: HTMLElement): () => void {
   const RADIUS = 2.5;
   const positions = new Float32Array(COUNT * 3);
   const colors = new Float32Array(COUNT * 3);
-  const vA = new THREE.Color('#a78bfa'); // violet
-  const vB = new THREE.Color('#7dd3fc'); // cyan
-  const vC = new THREE.Color('#fcd34d'); // gold
+  const vA = new THREE.Color('#e04a10'); // primary orange
+  const vB = new THREE.Color('#c2410c'); // burnt orange
+  const vC = new THREE.Color('#d97706'); // amber
 
   const pts: { x: number; y: number; z: number }[] = [];
   const golden = Math.PI * (3 - Math.sqrt(5));
@@ -71,8 +71,8 @@ export function initThreeScene(root: HTMLElement): () => void {
     size: 0.085,
     vertexColors: true,
     transparent: true,
-    opacity: 0.95,
-    blending: THREE.AdditiveBlending,
+    opacity: 0.9,
+    blending: THREE.NormalBlending,
     depthWrite: false,
     sizeAttenuation: true,
   });
@@ -95,19 +95,19 @@ export function initThreeScene(root: HTMLElement): () => void {
   const lg = new THREE.BufferGeometry();
   lg.setAttribute('position', new THREE.BufferAttribute(new Float32Array(linePositions), 3));
   const lmat = new THREE.LineBasicMaterial({
-    color: new THREE.Color('#8b5cf6'),
+    color: new THREE.Color('#f05010'),
     transparent: true,
-    opacity: 0.14,
-    blending: THREE.AdditiveBlending,
+    opacity: 0.16,
+    blending: THREE.NormalBlending,
   });
   const lines = new THREE.LineSegments(lg, lmat);
 
   // inner glow core
   const coreMat = new THREE.MeshBasicMaterial({
-    color: new THREE.Color('#7c3aed'),
+    color: new THREE.Color('#f05010'),
     transparent: true,
-    opacity: 0.12,
-    blending: THREE.AdditiveBlending,
+    opacity: 0.08,
+    blending: THREE.NormalBlending,
   });
   const core = new THREE.Mesh(new THREE.IcosahedronGeometry(1.05, 2), coreMat);
 

@@ -1,0 +1,46 @@
+---
+const faqs = [
+  {
+    q: 'What services do you offer?',
+    a: 'Custom AI agents and business automation, modern web development with Astro and PocketBase, automated lead generation and outreach pipelines, and SEO/AEO/GEO optimization.',
+  },
+  {
+    q: 'Can you automate my entire lead generation process?',
+    a: 'Yes. I build end-to-end pipelines that discover, enrich, score, and reach out to prospects automatically — 3,500+ leads found and 455+ emails delivered with automatic bounce protection.',
+  },
+  {
+    q: 'How do you make businesses visible to AI engines?',
+    a: 'I apply AEO and GEO strategies — structured schema markup, semantic HTML, and extractable, answer-ready content — so businesses rank in both search engines and AI assistants like ChatGPT and Google AI Overviews.',
+  },
+  {
+    q: 'Do you build AI agents that run 24/7?',
+    a: 'Yes. I build AI-agent systems that take on real company roles — CEO strategy, sales outreach, SEO audits, content, and support — operating around the clock on autopilot.',
+  },
+];
+---
+
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section__head" data-num="08" data-reveal>
+      <span class="section__kicker" data-kicker-num="/ 08">FAQ</span>
+      <h2 class="section__title">Questions, <em>answered</em>.</h2>
+      <p class="section__lead">
+        Straight answers on what I build, how it runs, and what you get.
+      </p>
+    </div>
+
+    <div class="faq__list">
+      {
+        faqs.map((f, i) => (
+          <details class="faq__item" data-reveal data-delay={i * 60}>
+            <summary class="faq__q">
+              <span>{f.q}</span>
+              <i class="ri-add-line" aria-hidden="true"></i>
+            </summary>
+            <div class="faq__a"><p>{f.a}</p></div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
