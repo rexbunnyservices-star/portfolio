@@ -524,13 +524,16 @@ html.no-js .reveal {
 .hero__grid {
   position: relative;
   z-index: 1;
+  width: 100%;
+  max-width: none;
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-areas:
     "photo text"
     "visual visual";
-  gap: clamp(1.5rem, 3vw, 3rem) clamp(2rem, 4vw, 4rem);
+  gap: clamp(1.5rem, 3vw, 3rem) clamp(2rem, 5vw, 6rem);
   align-items: center;
+  padding-inline: clamp(1.5rem, 5vw, 5rem);
 }
 
 .hero__badge {
@@ -571,7 +574,7 @@ html.no-js .reveal {
   grid-area: text;
   align-items: flex-start;
   text-align: left;
-  max-width: 40ch;
+  max-width: 48ch;
 }
 
 .hero__greeting {
