@@ -790,7 +790,7 @@ html.no-js .reveal {
 /* photo — transparent bust cutout, centered, with faded circle glow beneath */
 .hero__photo-card {
   position: relative;
-  width: min(59.5vw, 595px);
+  width: min(49.5vw, 496px);
 }
 .hero__photo-frame {
   position: relative;
