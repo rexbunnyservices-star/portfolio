@@ -17,12 +17,13 @@
   /* ink — near-black headlines, warm gray body */
   --ink: hsl(0 0% 10%);
   --muted: hsl(0 0% 38%);
-  --faint: hsl(0 0% 56%);
+  --faint: hsl(0 0% 45%);
   --ink-bright: hsl(0 0% 5%);
 
   /* accents — vivid orange #F04010 leads; amber as secondary viz accent */
   --accent: hsl(17 88% 50%);
   --accent-2: hsl(20 88% 56%);
+  --accent-ink: hsl(17 88% 40%);
   --accent-soft: hsl(17 88% 50% / 0.12);
   --accent-glow: 0 0 24px hsl(17 88% 50% / 0.35);
   --orange-deep: hsl(17 88% 42%);
@@ -169,7 +170,7 @@ button {
   border-radius: 4px;
 }
 
-.accent { color: var(--accent); }
+.accent { color: var(--accent-ink); }
 .mono { font-family: var(--mono); }
 
 /* =============== UTILITIES =============== */
@@ -212,7 +213,7 @@ button {
 .section__kicker {
   font-family: var(--mono);
   font-size: var(--fs-xs);
-  color: var(--accent);
+  color: var(--accent-ink);
   text-transform: uppercase;
   letter-spacing: 0.22em;
   display: inline-flex;
@@ -224,7 +225,7 @@ button {
   content: "";
   width: 2rem;
   height: 1px;
-  background: var(--accent);
+  background: var(--accent-ink);
 }
 .section__kicker::after {
   content: attr(data-kicker-num);
@@ -583,7 +584,7 @@ html.no-js .reveal {
 .hero__greeting {
   font-family: var(--mono);
   font-size: var(--fs-sm);
-  color: var(--accent);
+  color: var(--accent-ink);
   margin-bottom: 0.4rem;
 }
 
@@ -1530,7 +1531,7 @@ html.no-js .reveal {
   font-size: var(--fs-xs);
   color: var(--muted);
 }
-.case-card__metric b { color: var(--accent); font-weight: var(--fw-semi); }
+.case-card__metric b { color: var(--accent-ink); font-weight: var(--fw-semi); }
 .case-card__foot {
   padding: 1.2rem 1.6rem 1.6rem;
   display: flex;

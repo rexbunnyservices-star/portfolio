@@ -123,16 +123,17 @@ const schemas = [personSchema, webSiteSchema, serviceSchema, faqSchema];
     <meta name="twitter:image" content="https://portfolio.rexbunnyservices.online/og-image.png" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" as="image" href="/hero-photo.webp" fetchpriority="high" />
 
-    <!-- Fonts: Satoshi (Fontshare) + Inter & JetBrains Mono (Google) -->
+    <!-- Fonts: Satoshi (Fontshare) + Syne, Cormorant & JetBrains Mono (Google) -->
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,800,900&display=swap"
+      href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap"
       rel="stylesheet"
     />
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Cormorant+Garamond:ital,wght@1,500;1,600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
@@ -308,17 +309,46 @@ const schemas = [personSchema, webSiteSchema, serviceSchema, faqSchema];
       const burger = document.getElementById('nav-burger');
       const menu = document.querySelector('.nav__menu');
       if (burger && menu) {
-        burger.addEventListener('click', () => {
-          const open = menu.classList.toggle('is-open');
+        const setOpen = (open) => {
+          menu.classList.toggle('is-open', open);
           burger.classList.toggle('is-active', open);
           burger.setAttribute('aria-expanded', String(open));
+        };
+        const closeMenu = (returnFocus) => {
+          setOpen(false);
+          if (returnFocus) burger.focus();
+        };
+        burger.addEventListener('click', () => {
+          const open = !menu.classList.contains('is-open');
+          setOpen(open);
+          if (open) menu.querySelector('a, button')?.focus();
         });
         menu.addEventListener('click', (e) => {
-          if (e.target.closest('a')) {
-            menu.classList.remove('is-open');
-            burger.classList.remove('is-active');
-            burger.setAttribute('aria-expanded', 'false');
+          if (e.target.closest('a')) closeMenu(false);
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && menu.classList.contains('is-open')) {
+            closeMenu(true);
+            return;
           }
+          if (e.key === 'Tab' && menu.classList.contains('is-open')) {
+            const focusables = [...menu.querySelectorAll('a, button')].filter(
+              (el) => el.offsetParent !== null
+            );
+            if (focusables.length === 0) return;
+            const first = focusables[0];
+            const last = focusables[focusables.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+              e.preventDefault();
+              last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+              e.preventDefault();
+              first.focus();
+            }
+          }
+        });
+        window.addEventListener('resize', () => {
+          if (window.innerWidth > 960) closeMenu(false);
         });
       }
 
