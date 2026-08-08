@@ -110,6 +110,20 @@ const schemas = [personSchema, webSiteSchema, serviceSchema, faqSchema];
     <meta name="theme-color" content="#fdf7f0" />
     <link rel="canonical" href="https://portfolio.rexbunnyservices.online" />
 
+    <!-- Theme bootstrapper (runs before paint — no flash of wrong theme) -->
+    <script is:inline>
+      (function () {
+        try {
+          var dark = localStorage.getItem('theme')
+            ? localStorage.getItem('theme') === 'dark'
+            : window.matchMedia('(prefers-color-scheme: dark)').matches;
+          document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', dark ? '#0b0f22' : '#fdf7f0');
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- Open Graph / Twitter -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -174,6 +188,13 @@ const schemas = [personSchema, webSiteSchema, serviceSchema, faqSchema];
           </a>
         </div>
 
+        <button class="nav__theme" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false">
+          <i class="ri-sun-line" aria-hidden="true"></i>
+          <i class="ri-moon-line" aria-hidden="true"></i>
+          <span class="nav__theme-fallback nav__theme-fallback--sun" aria-hidden="true">☀</span>
+          <span class="nav__theme-fallback nav__theme-fallback--moon" aria-hidden="true">☾</span>
+        </button>
+
         <button class="nav__burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">
           <span></span>
           <span></span>
@@ -225,6 +246,38 @@ const schemas = [personSchema, webSiteSchema, serviceSchema, faqSchema];
       import Lenis from 'lenis';
 
       document.documentElement.classList.replace('no-js', 'js');
+
+      // Theme toggle — warm light ⇄ midnight dark (symbols never break)
+      const setTheme = (dark, persist) => {
+        document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+        const meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', dark ? '#0b0f22' : '#fdf7f0');
+        const btn = document.getElementById('theme-toggle');
+        if (btn) {
+          btn.setAttribute('aria-pressed', String(dark));
+          btn.setAttribute('aria-label', dark ? 'Switch to warm mode' : 'Switch to dark mode');
+        }
+        if (persist) {
+          try {
+            localStorage.setItem('theme', dark ? 'dark' : 'light');
+          } catch (e) {}
+        }
+      };
+      const themeToggle = document.getElementById('theme-toggle');
+      themeToggle?.addEventListener('click', () => {
+        setTheme(document.documentElement.dataset.theme !== 'dark', true);
+      });
+      setTheme(document.documentElement.dataset.theme === 'dark', false);
+
+      // Remixicon fallback guard — show the inline ☀ / ☾ symbols if the icon font is ever unavailable
+      if (document.fonts && document.fonts.load) {
+        document.fonts
+          .load('16px remixicon')
+          .then((faces) => {
+            if (!faces || faces.length === 0) document.documentElement.classList.add('no-remixicon');
+          })
+          .catch(() => document.documentElement.classList.add('no-remixicon'));
+      }
 
       // Smooth scroll (Lenis) + scroll progress bar
       const lenis = new Lenis({

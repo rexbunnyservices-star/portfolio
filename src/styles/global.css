@@ -80,6 +80,40 @@
   --z-fixed: 100;
 }
 
+/* =============== DARK MODE — Midnight Blue & Purple =============== */
+:root[data-theme="dark"] {
+  /* palette — night/midnight blue canvas, purple-shifted mid-tones */
+  --bg-950: hsl(229 48% 7%);
+  --bg-900: hsl(231 42% 10%);
+  --bg-800: hsl(234 36% 13%);
+  --bg-700: hsl(238 30% 16%);
+  --glass: rgba(255, 255, 255, 0.05);
+  --glass-strong: rgba(255, 255, 255, 0.09);
+  --border: rgba(255, 255, 255, 0.12);
+  --border-strong: rgba(255, 255, 255, 0.2);
+
+  /* ink — moon warm-white headings, warm-tinted body copy */
+  --ink: hsl(45 28% 94%);
+  --muted: hsl(42 12% 74%);
+  --faint: hsl(42 10% 62%);
+  --ink-bright: hsl(45 30% 97%);
+
+  /* accents — tourism blue/cyan/gold brightened for dark contrast */
+  --accent: hsl(211 70% 62%);
+  --accent-2: hsl(203 76% 60%);
+  --accent-ink: hsl(211 74% 70%);
+  --accent-soft: hsl(211 63% 60% / 0.16);
+  --accent-glow: 0 0 24px hsl(211 70% 60% / 0.4);
+  --cyan: hsl(199 80% 64%);
+  --cyan-soft: hsl(199 80% 64% / 0.14);
+  --gold: hsl(30 86% 64%);
+  --gold-soft: hsl(30 86% 64% / 0.14);
+  --amber: var(--gold);
+  --amber-soft: var(--gold-soft);
+  --grad: linear-gradient(120deg, hsl(211 70% 62%) 0%, hsl(203 76% 60%) 100%);
+  --grad-border: linear-gradient(120deg, transparent, hsl(211 70% 62% / 0.6), hsl(203 76% 60% / 0.45), transparent);
+}
+
 /* =============== RESET / BASE =============== */
 *,
 *::before,
@@ -118,6 +152,15 @@ body {
   line-height: 1.6;
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
+}
+
+:root[data-theme="dark"] body {
+  background-image:
+    radial-gradient(1200px 800px at 12% -5%, hsl(211 70% 55% / 0.16), transparent 55%),
+    radial-gradient(1000px 700px at 88% -2%, hsl(265 62% 55% / 0.22), transparent 55%),
+    radial-gradient(1100px 750px at 92% 100%, hsl(265 62% 45% / 0.16), transparent 55%),
+    radial-gradient(900px 700px at 10% 100%, hsl(199 80% 50% / 0.14), transparent 55%),
+    linear-gradient(180deg, var(--bg-950), var(--bg-900) 40%);
 }
 
 /* film grain overlay */
@@ -475,6 +518,87 @@ html.no-js .reveal {
 
 .nav__burger {
   display: none;
+}
+
+/* =============== THEME TOGGLE (warm ⇄ dark) =============== */
+.nav__theme {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--glass);
+  color: var(--ink);
+  font-size: 1.15rem;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+.nav__theme:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: var(--accent-glow);
+}
+.nav__theme i {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.35s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav__theme .ri-moon-line {
+  opacity: 0;
+  transform: translateY(110%) rotate(90deg);
+}
+.nav__theme .ri-sun-line {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+}
+:root[data-theme="dark"] .nav__theme .ri-sun-line {
+  opacity: 0;
+  transform: translateY(-110%) rotate(-90deg);
+}
+:root[data-theme="dark"] .nav__theme .ri-moon-line {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+}
+
+/* day/night symbol fallback if the Remixicon font fails to load */
+.nav__theme-fallback {
+  display: none;
+  position: absolute;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  line-height: 1;
+}
+html.no-remixicon .nav__theme i.ri-sun-line,
+html.no-remixicon .nav__theme i.ri-moon-line {
+  display: none;
+}
+html.no-remixicon .nav__theme-fallback {
+  display: flex;
+}
+html.no-remixicon .nav__theme .nav__theme-fallback--moon {
+  opacity: 0;
+  transform: translateY(110%) rotate(90deg);
+  transition: opacity 0.35s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+html.no-remixicon .nav__theme .nav__theme-fallback--sun {
+  transition: opacity 0.35s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+html.no-remixicon[data-theme="dark"] .nav__theme .nav__theme-fallback--sun {
+  opacity: 0;
+  transform: translateY(-110%) rotate(-90deg);
+}
+html.no-remixicon[data-theme="dark"] .nav__theme .nav__theme-fallback--moon {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
 }
 
 /* =============== HERO =============== */
@@ -2113,5 +2237,56 @@ html.no-js .reveal {
   .reveal {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* =============== DARK MODE — COMPONENT OVERRIDES =============== */
+:root[data-theme="dark"] html {
+  scrollbar-color: hsl(265 20% 55%) var(--bg-900);
+}
+
+:root[data-theme="dark"] .header {
+  background: linear-gradient(180deg, rgba(11, 15, 34, 0.86), rgba(11, 15, 34, 0.72));
+}
+
+:root[data-theme="dark"] .glass::before {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+}
+
+:root[data-theme="dark"] .marquee {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+:root[data-theme="dark"] .hero__photo-card .stat-chip {
+  background: rgba(11, 15, 34, 0.78);
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+}
+
+:root[data-theme="dark"] .case-card__preview-ghost {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.16);
+}
+:root[data-theme="dark"] .case-card__preview-grid {
+  background-image:
+    linear-gradient(hsl(0 0% 100% / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(0 0% 100% / 0.06) 1px, transparent 1px);
+}
+
+:root[data-theme="dark"] .contact__field input,
+:root[data-theme="dark"] .contact__field textarea {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--ink);
+}
+:root[data-theme="dark"] .contact__field input::placeholder,
+:root[data-theme="dark"] .contact__field textarea::placeholder { color: var(--faint); }
+
+:root[data-theme="dark"] .footer {
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.04));
+}
+
+@media (max-width: 960px) {
+  :root[data-theme="dark"] .nav__menu {
+    background: rgba(11, 15, 34, 0.97);
   }
 }
