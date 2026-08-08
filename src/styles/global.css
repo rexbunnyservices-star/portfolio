@@ -526,18 +526,22 @@ html.no-js .reveal {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 3.5rem;
-  height: 1.7rem;
+  width: 4.4rem;
+  height: 2.1rem;
   border-radius: var(--radius-pill);
   border: 1px solid var(--border);
   background: transparent;
   flex-shrink: 0;
   overflow: hidden;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.15s ease;
 }
 .nav__theme:hover {
   border-color: var(--accent);
-  box-shadow: var(--accent-glow);
+  box-shadow: 0 5px 14px rgba(10, 10, 12, 0.22), var(--accent-glow);
+}
+.nav__theme:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(10, 10, 12, 0.2), var(--accent-glow);
 }
 .nav__theme-track {
   position: relative;
@@ -547,7 +551,8 @@ html.no-js .reveal {
   padding: 0.18rem;
   border-radius: inherit;
   background: linear-gradient(120deg, #fdf7f0, #cfe2f7);
-  transition: background 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: inset 0 2px 5px rgba(10, 10, 12, 0.18), inset 0 -1px 1px rgba(255, 255, 255, 0.85);
+  transition: background 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
 }
 /* tiny stars on the dark track */
 .nav__theme-track::before {
@@ -564,6 +569,7 @@ html.no-js .reveal {
 }
 :root[data-theme="dark"] .nav__theme-track {
   background: linear-gradient(120deg, #0b0f22, #241a40);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.55), inset 0 -1px 1px rgba(255, 255, 255, 0.06);
 }
 :root[data-theme="dark"] .nav__theme-track::before { opacity: 1; }
 
@@ -572,18 +578,18 @@ html.no-js .reveal {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 0.8rem;
+  font-size: 1rem;
   z-index: 1;
   pointer-events: none;
   transition: opacity 0.35s ease, color 0.35s ease, text-shadow 0.35s ease;
 }
 .nav__theme-sun {
-  left: 0.52rem;
+  left: 0.62rem;
   color: #f59e0b;
   opacity: 1;
 }
 .nav__theme-moon {
-  right: 0.52rem;
+  right: 0.62rem;
   color: rgba(255, 255, 255, 0.75);
   opacity: 0.35;
 }
@@ -601,21 +607,30 @@ html.no-js .reveal {
   position: absolute;
   top: 50%;
   left: 0;
-  width: 1.34rem;
-  height: 1.34rem;
-  margin-top: -0.67rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  margin-top: -0.8rem;
   margin-left: 0.18rem;
   border-radius: 50%;
-  background: linear-gradient(180deg, #ffffff, #f3e7d7);
-  border: 1px solid rgba(10, 10, 12, 0.14);
-  box-shadow: 0 2px 6px rgba(10, 10, 12, 0.25);
+  background: radial-gradient(circle at 32% 28%, #ffffff, #f7ecdc 55%, #e6d0ae 100%);
+  border: 1px solid rgba(10, 10, 12, 0.18);
+  box-shadow:
+    0 3px 6px rgba(10, 10, 12, 0.35),
+    0 8px 14px rgba(10, 10, 12, 0.18),
+    inset 0 -3px 5px rgba(10, 10, 12, 0.14),
+    inset 0 1px 1px rgba(255, 255, 255, 0.95);
   transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), background 0.4s ease, border-color 0.3s ease, box-shadow 0.35s ease;
 }
 :root[data-theme="dark"] .nav__theme-thumb {
-  background: linear-gradient(180deg, #f2f6ff, #b9c4ff);
-  border-color: rgba(255, 255, 255, 0.35);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 0 10px rgba(148, 163, 255, 0.45);
-  transform: translateX(1.8rem);
+  background: radial-gradient(circle at 34% 30%, #ffffff, #c9d3ff 55%, #8fa0ff 100%);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.55),
+    0 10px 18px rgba(0, 0, 0, 0.3),
+    inset 0 -3px 6px rgba(30, 40, 120, 0.45),
+    inset 0 1px 1px rgba(255, 255, 255, 0.95),
+    0 0 12px rgba(148, 163, 255, 0.5);
+  transform: translateX(2.44rem);
 }
 
 /* day/night symbol fallback if the Remixicon font fails to load */
@@ -624,13 +639,13 @@ html.no-js .reveal {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 0.8rem;
+  font-size: 1rem;
   line-height: 1;
   z-index: 1;
   pointer-events: none;
 }
-.nav__theme-fallback--sun { left: 0.52rem; color: #f59e0b; opacity: 1; }
-.nav__theme-fallback--moon { right: 0.52rem; color: rgba(255, 255, 255, 0.75); opacity: 0.35; }
+.nav__theme-fallback--sun { left: 0.62rem; color: #f59e0b; opacity: 1; }
+.nav__theme-fallback--moon { right: 0.62rem; color: rgba(255, 255, 255, 0.75); opacity: 0.35; }
 html.no-remixicon .nav__theme i.ri-sun-line,
 html.no-remixicon .nav__theme i.ri-moon-line {
   display: none;
