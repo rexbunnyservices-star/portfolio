@@ -806,7 +806,7 @@ html.no-remixicon[data-theme="dark"] .nav__theme-fallback--moon {
   font-weight: var(--fw-semi);
 }
 .hero__quote::before {
-  content: "ΓÇ£";
+  content: "\201C";
   display: block;
   font-family: var(--serif);
   font-style: italic;
@@ -2168,6 +2168,7 @@ html.no-remixicon[data-theme="dark"] .nav__theme-fallback--moon {
       "visual";
     gap: 2.5rem;
     justify-items: center;
+    padding-inline: clamp(1.25rem, 5vw, 3rem);
   }
   .hero__content--text {
     align-items: center;
@@ -2284,7 +2285,7 @@ html.no-remixicon[data-theme="dark"] .nav__theme-fallback--moon {
     left: -0.4rem;
   }
   .hero__name {
-    font-size: clamp(2.6rem, 15vw, 4rem);
+    font-size: clamp(2.2rem, 11.5vw, 3.8rem);
   }
 }
 
