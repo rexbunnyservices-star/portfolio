@@ -2172,6 +2172,9 @@ html.no-remixicon[data-theme="dark"] .nav__theme-fallback--moon {
   .hero__content--text {
     align-items: center;
     text-align: center;
+    width: 100%;
+    max-width: 100%;
+    margin-inline: 0;
   }
   .hero__cta-row {
     justify-content: center;
