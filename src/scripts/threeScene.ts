@@ -194,9 +194,9 @@ export function initThreeScene(root: HTMLElement): () => void {
   const pts: V3[] = [];
   const golden = Math.PI * (3 - Math.sqrt(5));
   const cols = [
-    [0.94, 0.66, 0.72], // #f0a8b0 rose-pink
-    [0.88, 0.5, 0.63], // #e080a0 deeper pink
-    [0.63, 0.56, 0.75], // #a090c0 lavender
+    [0.18, 0.5, 0.82], // #2f7fd1 tourism sky blue
+    [0.29, 0.64, 0.91], // #4aa3e8 lighter blue
+    [0.94, 0.48, 0.38], // #f07a60 peach/salmon
   ];
   for (let i = 0; i < COUNT; i++) {
     const y = 1 - (i / (COUNT - 1)) * 2;
@@ -339,7 +339,7 @@ export function initThreeScene(root: HTMLElement): () => void {
     gl.bufferSubData(gl.ARRAY_BUFFER, 0, linesRot);
     gl.useProgram(solidProg);
     gl.uniformMatrix4fv(uSolidProj, false, projView);
-    gl.uniform4f(uSolidColor, 0.941, 0.659, 0.706, 0.16);
+    gl.uniform4f(uSolidColor, 0.18, 0.5, 0.82, 0.16);
     gl.enableVertexAttribArray(0);
     gl.bindBuffer(gl.ARRAY_BUFFER, lineBuf);
     gl.vertexAttribPointer(0, 3, gl.FLOAT, false, 0, 0);
@@ -352,7 +352,7 @@ export function initThreeScene(root: HTMLElement): () => void {
     gl.bufferSubData(gl.ARRAY_BUFFER, 0, icoRot);
     gl.useProgram(solidProg);
     gl.uniformMatrix4fv(uSolidProj, false, projView);
-    gl.uniform4f(uSolidColor, 0.941, 0.659, 0.706, 0.08);
+    gl.uniform4f(uSolidColor, 0.18, 0.5, 0.82, 0.08);
     gl.enableVertexAttribArray(0);
     gl.bindBuffer(gl.ARRAY_BUFFER, icoBuf);
     gl.vertexAttribPointer(0, 3, gl.FLOAT, false, 0, 0);
