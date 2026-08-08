@@ -188,11 +188,14 @@ const schemas = [personSchema, webSiteSchema, serviceSchema, faqSchema];
           </a>
         </div>
 
-        <button class="nav__theme" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false">
-          <i class="ri-sun-line" aria-hidden="true"></i>
-          <i class="ri-moon-line" aria-hidden="true"></i>
-          <span class="nav__theme-fallback nav__theme-fallback--sun" aria-hidden="true">☀</span>
-          <span class="nav__theme-fallback nav__theme-fallback--moon" aria-hidden="true">☾</span>
+        <button class="nav__theme" id="theme-toggle" role="switch" aria-label="Switch to dark mode" aria-pressed="false">
+          <span class="nav__theme-track">
+            <i class="ri-sun-line nav__theme-sun" aria-hidden="true"></i>
+            <i class="ri-moon-line nav__theme-moon" aria-hidden="true"></i>
+            <span class="nav__theme-fallback nav__theme-fallback--sun" aria-hidden="true">☀</span>
+            <span class="nav__theme-fallback nav__theme-fallback--moon" aria-hidden="true">☾</span>
+            <span class="nav__theme-thumb" aria-hidden="true"></span>
+          </span>
         </button>
 
         <button class="nav__burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">
