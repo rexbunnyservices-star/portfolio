@@ -1,0 +1,130 @@
+---
+const cards = [
+  {
+    icon: 'ri-focus-3-line',
+    tint: 'violet',
+    wide: true,
+    title: 'AI Lead Intake & Scoring',
+    desc: 'Multi-channel lead capture that dedupes and ranks every enquiry — from landing pages, Meta ads and directories straight into one clean pipeline.',
+    list: [
+      { label: 'Consent-first capture', detail: 'landing pages + Meta lead forms' },
+      { label: 'Phone-level dedup', detail: 'no double-counting, ever' },
+      { label: 'AI lead scoring', detail: 'hot / warm / cold with reasons' },
+    ],
+  },
+  {
+    icon: 'ri-whatsapp-line',
+    tint: 'cyan',
+    title: 'AI Call & WhatsApp Follow-Up',
+    desc: 'AI-transcribed calls and consent-gated WhatsApp flows that confirm interest, book visits and send reminders — hands-off.',
+    tags: ['WhatsApp Cloud API', 'Call transcription', 'Visit booking', 'Reminders'],
+  },
+  {
+    icon: 'ri-mail-send-line',
+    tint: 'gold',
+    title: 'Cold Email & Nurture',
+    desc: 'Bounce-aware outreach that keeps deliverability healthy while referral and nurture sequences run on autopilot.',
+    tags: ['Bounce handling', 'Referral outreach', 'Drip nurture'],
+  },
+  {
+    icon: 'ri-image-2-line',
+    tint: 'violet',
+    wide: true,
+    title: 'AI Virtual Staging & Listing Marketing',
+    desc: 'Photorealistic virtual staging, AI listing copy and floor-plan visuals that sell the vision before the visit.',
+    list: [
+      { label: 'Virtual staging', detail: 'empty rooms, furnished in seconds' },
+      { label: 'AI listing copy', detail: 'SEO-ready descriptions' },
+      { label: 'Creative assets at scale', detail: 'stills + video pipelines' },
+    ],
+  },
+  {
+    icon: 'ri-line-chart-line',
+    tint: 'gold',
+    title: 'AI Property Valuation (AVM)',
+    desc: 'ML + LLM valuations with comparable analysis, confidence bands and price forecasts grounded in your micro-market.',
+    tags: ['Comparables', 'Price forecasts', 'Neighbourhood analytics'],
+  },
+  {
+    icon: 'ri-building-4-line',
+    tint: 'cyan',
+    title: 'Real Estate CRM & Brokerage OS',
+    desc: 'Project-to-unit inventory, visit bookings, broker pipelines and live dashboards — the operating system for a sales team.',
+    tags: ['Inventory', 'Visit pipeline', 'Live dashboard', 'Analytics'],
+  },
+];
+
+const stats = [
+  { icon: 'ri-focus-3-line', value: '586+', label: 'Organic real estate leads' },
+  { icon: 'ri-mail-send-line', value: '132+', label: 'Outreach emails delivered' },
+  { icon: 'ri-time-line', value: '24/7', label: 'Pipeline running, always' },
+  { icon: 'ri-stack-line', value: '6', label: 'Automation tracks' },
+];
+---
+
+<section class="section" id="real-estate">
+  <div class="container">
+    <div class="section__head" data-num="06" data-reveal>
+      <span class="section__kicker" data-kicker-num="/ 06">Real Estate Automation</span>
+      <h2 class="section__title">Real estate, run on <em>autopilot</em>.</h2>
+      <p class="section__lead">
+        Lead capture to closing — every stage automated with AI. Same machinery
+        proven live for a luxury Noida development.
+      </p>
+    </div>
+
+    <div class="bento">
+      {
+        cards.map((card, i) => (
+          <article
+            class:list={['glass', 'bento__card', card.wide ? 'bento__card--wide' : '']}
+            data-tint={card.tint}
+            data-reveal
+            data-delay={(i % 3) * 100}
+          >
+            <span class="bento__icon"><i class={card.icon}></i></span>
+            <h3>{card.title}</h3>
+            <p>{card.desc}</p>
+
+            {
+              card.list && (
+                <ul class="bento__list">
+                  {card.list.map((li) => (
+                    <li>
+                      <i class="ri-check-line"></i>
+                      <span><b>{li.label}</b> — {li.detail}</span>
+                    </li>
+                  ))}
+                </ul>
+              )
+            }
+
+            {
+              card.tags && (
+                <div class="bento__tags">
+                  {card.tags.map((t) => <span class="skill-chip">{t}</span>)}
+                </div>
+              )
+            }
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="results__grid" style="margin-top:1.4rem;">
+      {
+        stats.map((s, i) => (
+          <div
+            class:list={['glass', 'result-card']}
+            data-reveal
+            data-delay={(i % 3) * 90}
+          >
+            <i class={s.icon}></i>
+            <div class="num" data-count={s.value}>{s.value}</div>
+            <div class="label">{s.label}</div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
