@@ -1,0 +1,106 @@
+---
+const cards = [
+  {
+    icon: 'ri-scissors-line',
+    tint: 'violet',
+    wide: true,
+    title: 'AI Clip Extraction',
+    desc: 'Find the moments worth keeping in long-form footage. The AI pipeline identifies high-potential cuts before the human finish.',
+    list: [
+      { label: 'Transcript-aware cut points', detail: 'matches cuts to spoken words for natural pacing' },
+      { label: 'Scene-change detection', detail: 'clean breaks with no awkward jumps' },
+      { label: 'Hook + title per clip', detail: 'ready for platform publishing' },
+    ],
+  },
+  {
+    icon: 'ri-movie-line',
+    tint: 'cyan',
+    title: 'Professional Edit & Finish',
+    desc: 'A professional touch that turns a rough cut into a finished piece — pacing, captions, colour, and sound, all refined by hand.',
+    tags: ['Pacing & caption timing', 'Colour grade', 'Audio mix & loudness', 'Aspect-ratio reframing'],
+  },
+  {
+    icon: 'ri-shape-2-line',
+    tint: 'gold',
+    title: 'Motion Graphics & Animation',
+    desc: 'Clean motion and simple animations to add clarity, polish, and visual interest without bloating production time.',
+    tags: ['Explainer animation', 'Motion titles', 'Figure animation'],
+  },
+];
+
+const stats = [
+  { icon: 'ri-tools-line', value: '38', label: 'FFmpeg tools in the local suite' },
+  { icon: 'ri-brain-line', value: '5', label: 'AI stages per clip' },
+  { icon: 'ri-user-star-line', value: '100%', label: 'Professionally finished by hand' },
+  { icon: 'ri-close-circle-line', value: '0', label: 'Raw AI output shipped as-is' },
+];
+---
+
+<section class="section" id="video">
+  <div class="container">
+    <div class="section__head" data-num="07" data-reveal>
+      <span class="section__kicker" data-kicker-num="/ 07">Video Editing & Clipping</span>
+      <h2 class="section__title">Long-form in. <em>Shorts out</em>.</h2>
+      <p class="section__lead">
+        An AI pipeline that transcribes your footage, finds the moments worth
+        keeping and assembles platform-ready vertical clips. Every cut is then
+        finished by hand — pacing, sound, colour and captions — and approved
+        before you see it.
+      </p>
+    </div>
+
+    <div class="bento">
+      {
+        cards.map((card, i) => (
+          <article
+            class:list={['glass', 'bento__card', card.wide ? 'bento__card--wide' : '']}
+            data-tint={card.tint}
+            data-reveal
+            data-delay={(i % 3) * 100}
+          >
+            <span class="bento__icon"><i class={card.icon}></i></span>
+            <h3>{card.title}</h3>
+            <p>{card.desc}</p>
+
+            {
+              card.list && (
+                <ul class="bento__list">
+                  {card.list.map((li) => (
+                    <li>
+                      <i class="ri-check-line"></i>
+                      <span><b>{li.label}</b> — {li.detail}</span>
+                    </li>
+                  ))}
+                </ul>
+              )
+            }
+
+            {
+              card.tags && (
+                <div class="bento__tags">
+                  {card.tags.map((t) => <span class="skill-chip">{t}</span>)}
+                </div>
+              )
+            }
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="results__grid" style="margin-top:1.4rem;">
+      {
+        stats.map((s, i) => (
+          <div
+            class:list={['glass', 'result-card']}
+            data-reveal
+            data-delay={(i % 3) * 90}
+          >
+            <i class={s.icon}></i>
+            <div class="num" data-count={s.value}>{s.value}</div>
+            <div class="label">{s.label}</div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

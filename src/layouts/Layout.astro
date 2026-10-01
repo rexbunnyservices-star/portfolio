@@ -11,6 +11,7 @@ const { title = 'Mo. Anas Saifi — AI Agents, Web Architecture & Automation', d
 const navLinks = [
   { href: '#capabilities', label: 'Capabilities' },
   { href: '#real-estate', label: 'Real Estate' },
+  { href: '#video', label: 'Video' },
   { href: '#work', label: 'Case Studies' },
   { href: '#about', label: 'Stack' },
   { href: '#ai', label: 'AI Demo' },
@@ -31,7 +32,7 @@ const personSchema = {
   ],
   email: 'mailto:help@rexbunnyservices.online',
   jobTitle: 'Web · AI · Automation Developer',
-  knowsAbout: ['Web Development', 'AI Agents', 'Automation', 'SEO', 'AEO', 'GEO', 'Lead Generation', 'n8n', 'Astro', 'PocketBase'],
+  knowsAbout: ['Web Development', 'AI Agents', 'Automation', 'SEO', 'AEO', 'GEO', 'Lead Generation', 'n8n', 'Astro', 'PocketBase', 'Video Editing', 'Short-Form Video', 'Motion Graphics'],
 };
 
 const webSiteSchema = {
@@ -54,6 +55,7 @@ const serviceSchema = {
     { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Modern Web Development & Architecture' } },
     { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Automated Lead Generation & Outreach' } },
     { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'SEO / AEO / GEO Optimization' } },
+    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Video Editing, Clipping & Post-Production' } },
   ],
 };
 
@@ -91,6 +93,14 @@ const faqSchema = {
       acceptedAnswer: {
         '@type': 'Answer',
         text: 'Yes. I build AI-agent systems that take on real company roles — CEO strategy, sales outreach, SEO audits, content, and support — operating around the clock on autopilot.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is the final video just AI output?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. AI handles the mechanical work — transcription, finding scene changes, scoring moments, first assembly — then the edit is finished by hand: pacing, captions, colour and sound. Every deliverable gets a professional pass and is approved before it is sent to you. Raw AI output is never shipped as-is.',
       },
     },
   ],
@@ -228,6 +238,7 @@ const schemas = [personSchema, webSiteSchema, serviceSchema, faqSchema];
           <h4>Menu</h4>
           <a href="#capabilities">Capabilities</a>
           <a href="#real-estate">Real Estate</a>
+          <a href="#video">Video</a>
           <a href="#work">Case Studies</a>
           <a href="#ai">AI Demo</a>
           <a href="#faq">FAQ</a>
